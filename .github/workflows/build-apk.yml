@@ -57,8 +57,10 @@ jobs:
           chmod +x ./gradlew
           set -o pipefail
           ./gradlew assembleDebug --stacktrace -PndkVersion="${NDK_VERSION}" 2>&1 | tee /tmp/build.log || {
-            echo "::error::BUILD FAILED — last 100 lines of the build log follow"
-            tail -100 /tmp/build.log | sed 's/^/::error::/'
+            echo "::error::BUILD FAILED — 'What went wrong' section follows"
+            grep -A 30 "What went wrong" /tmp/build.log | sed 's/^/::error::/'
+            echo "::error::— failing task lines —"
+            grep -E "FAILURE:|Execution failed for task|What went wrong|Caused by|\* Exception" /tmp/build.log | head -30 | sed 's/^/::error::/'
             exit 1
           }
 
