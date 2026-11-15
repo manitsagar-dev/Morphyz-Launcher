@@ -682,9 +682,9 @@ public class LauncherActivity extends BaseActivity {
         setTheme(R.style.AppTheme);
         LauncherPreferences.DEFAULT_PREF.edit().remove("launcher_theme").remove("enable_bg_gradient").apply();
         
-        // The launcher UI is designed as a wide dashboard: keep every flow in
-        // landscape instead of allowing a partial portrait layout to appear.
-        setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
+        // The launcher UI is designed portrait-first (Morphyz redesign, matching
+        // the showcase screens): keep every flow in portrait.
+        setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
 
         setContentView(R.layout.activity_pojav_launcher);
         // Full-bleed window: cutout mode follows the user's "Ignore camera

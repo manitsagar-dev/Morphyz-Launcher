@@ -6,7 +6,7 @@
     <color name="control_button_pressed_color">#66FFFFFF</color>
 
     <!-- Main Button -->
-    <color name="minebutton_color">#FFFFFF</color>
+    <color name="minebutton_color">#FF6D00</color>
     <color name="cu_bg_app">#0B0B0E</color>
     <color name="cu_bg_status_bar">#0B0B0E</color>
     <color name="cu_bg_bottom_bar">#0B0B0E</color>
@@ -84,20 +84,20 @@
     <color name="bg_client_features">#111217</color>
     <color name="bg_client_features_card">#1B1C22</color>
 
-    <!-- Accent colors (Neon Green + Purple) -->
-    <color name="accent_primary">#FFFFFF</color>
-    <color name="accent_light">#B9BBC4</color>
-    <color name="accent_purple">#D0D0D0</color>
-    <color name="accent_purple_client">#22C9CB</color>
-    <color name="accent_purple_deep">#888888</color>
-    <color name="accent_bg_subtle">#1A1C2C</color>
-    <color name="accent_border">#FFFFFF</color>
+    <!-- Accent colors (Morphyz Orange) -->
+    <color name="accent_primary">#FF6D00</color>
+    <color name="accent_light">#FF9E4A</color>
+    <color name="accent_purple">#FF6D00</color>
+    <color name="accent_purple_client">#FF8C1A</color>
+    <color name="accent_purple_deep">#E65100</color>
+    <color name="accent_bg_subtle">#241209</color>
+    <color name="accent_border">#FF6D00</color>
 
     <!-- Legacy/Alias colors (kept for back-compat) -->
-    <color name="accent_green">#FFFFFF</color>
-    <color name="accent_green_light">#B9BBC4</color>
-    <color name="accent_green_bg">#1A1C2C</color>
-    <color name="accent_green_border">#FFFFFF</color>
+    <color name="accent_green">#FF6D00</color>
+    <color name="accent_green_light">#FF9E4A</color>
+    <color name="accent_green_bg">#241209</color>
+    <color name="accent_green_border">#FF6D00</color>
 
     <!-- Text -->
     <color name="text_primary_white">#FFFFFF</color>
@@ -109,23 +109,23 @@
 
     <!-- Dividers / Borders -->
     <color name="border_default">#2A2A2A</color>
-    <color name="border_hover">#FFFFFF</color>
+    <color name="border_hover">#FF6D00</color>
     <color name="divider_color">#333333</color>
 
     <!-- PLAY button -->
-    <color name="play_btn_bg">#FFFFFF</color>
+    <color name="play_btn_bg">#FF6D00</color>
     <color name="play_btn_text">#0D0D0D</color>
 
     <!-- Settings UI Colors -->
     <color name="settings_bg">#080A0F</color>
-    <color name="card_bg">#0D1410</color>
-    <color name="card_bg_pressed">#162018</color>
-    <color name="neon_green">#62D99B</color>
-    <color name="neon_green_dim">#3F62D99B</color>
-    <color name="stroke_neon">#3F62D99B</color>
+    <color name="card_bg">#171310</color>
+    <color name="card_bg_pressed">#221A15</color>
+    <color name="neon_green">#FF6D00</color>
+    <color name="neon_green_dim">#33FF6D00</color>
+    <color name="stroke_neon">#4DFF6D00</color>
     <color name="like_active">#FF4444</color>
     <color name="installed_color">#22C55E</color>
 
-    <color name="bg_nav_item_active">#AAFFFFFF</color>
-    <color name="premium_cyan">#D0D0D0</color>
+    <color name="bg_nav_item_active">#3DFF6D00</color>
+    <color name="premium_cyan">#FF9E4A</color>
 </resources>

@@ -465,7 +465,7 @@ Third-party components (GL4ES, MobileGlues, ANGLE, Zink/Mesa, LWJGL, OpenJDK, SD
     <string name="preference_force_big_core_title">Force the renderer to run on the big core</string>
     <string name="preference_force_big_core_desc">Forces the Minecraft render thread to run on the core with the highest maximum frequency.</string>
     <string name="preference_force_landscape_title">Force landscape orientation</string>
-    <string name="preference_force_landscape_summary">Retired: the launcher is always landscape. Every page (browse, skins) is drawn for a wide screen, so the orientation is no longer a user choice.</string>
+    <string name="preference_force_landscape_summary">Retired: the launcher is always portrait. Every page (browse, skins) is drawn portrait-first, so the orientation is no longer a user choice.</string>
     <string name="preference_category_launcher_appearance">Launcher appearance</string>
     <string name="preference_set_custom_bg_title">Set custom launcher background</string>
     <string name="preference_set_custom_bg_summary">Pick an image from your gallery to use as the launcher background.</string>
@@ -725,7 +725,7 @@ Third-party components (GL4ES, MobileGlues, ANGLE, Zink/Mesa, LWJGL, OpenJDK, SD
     <string name="mod_deps_install_selected">Install selected</string>
     <string name="mod_deps_install_without">Install without deps</string>
 
-    <!-- Launcher Landscape Layout Strings -->
+    <!-- Launcher Portrait Layout Strings -->
     <string name="cs_launcher_title">MORPHYZ LAUNCHER</string>
     <string name="cs_launcher_subtitle">YOUR MINECRAFT. YOUR WAY.</string>
     <string name="cs_welcome_back_label">· WELCOME BACK,</string>

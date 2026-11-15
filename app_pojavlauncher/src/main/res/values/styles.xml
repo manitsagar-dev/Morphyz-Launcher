@@ -17,23 +17,23 @@
         <item name="colorBgBottomBar">#0B0B0E</item>
         <item name="colorBgStatusBar">#0B0B0E</item>
         <item name="colorDivider">#1AFFFFFF</item>
-        <item name="themeAccent">@color/premium_cyan</item>
+        <item name="themeAccent">@color/minebutton_color</item>
         <item name="colorTextPrimary">@color/text_primary_white</item>
         <item name="colorTextSecondary">@color/text_secondary_light</item>
         <item name="bgMainDrawable">@drawable/bg_premium_cosmic_gradient</item>
         <item name="android:windowBackground">@drawable/bg_premium_cosmic_gradient</item>
         <!-- Explicit Material 3 palette: blocks its built-in #D0BCFF lavender fallback. -->
-        <item name="colorPrimary">#FFFFFF</item>
+        <item name="colorPrimary">#FF6D00</item>
         <item name="colorOnPrimary">#0D0D0D</item>
-        <item name="colorPrimaryContainer">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#FF6D00</item>
         <item name="colorOnPrimaryContainer">#0D0D0D</item>
-        <item name="colorSecondary">#D0D0D0</item>
+        <item name="colorSecondary">#FF9E4A</item>
         <item name="colorOnSecondary">#0D0D0D</item>
         <item name="colorSecondaryContainer">#25262D</item>
         <item name="colorOnSecondaryContainer">#FFFFFF</item>
         <item name="colorTertiary">#B8B8B8</item>
         <item name="colorOnTertiary">#0D0D0D</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
         <item name="colorOnSurface">@color/text_primary_white</item>
         <item name="colorOnSurfaceVariant">@color/text_secondary_light</item>
         <item name="colorSurface">#141419</item>
@@ -44,7 +44,7 @@
         <item name="android:windowBackground">@drawable/bg_gradient_default</item>
         <item name="colorBgBottomBar">@color/cu_bg_bottom_bar</item>
         <item name="colorBgStatusBar">@color/cu_bg_status_bar</item>
-        <item name="colorAccent">#FFFFFF</item>
+        <item name="colorAccent">#FF6D00</item>
     </style>
 
     <!-- ── Dialogs ─────────────────────────────────────────── -->
@@ -99,7 +99,7 @@
         <item name="colorTextSecondary">@color/mb_text_secondary</item>
         <item name="bgMainDrawable">#121212</item>
         <item name="android:windowBackground">#121212</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
         <item name="colorOnSurface">@color/mb_text_primary</item>
         <item name="colorOnSurfaceVariant">@color/mb_text_secondary</item>
         <item name="colorSurface">#121212</item>
@@ -112,7 +112,7 @@
         <item name="android:windowBackground">@drawable/bg_gradient_midnight_blue</item>
         <item name="colorBgBottomBar">@color/mb_bg_bottom_bar</item>
         <item name="colorBgStatusBar">@color/mb_bg_status_bar</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
     </style>
 
     <!-- ── Forest Green ─────────────────────────────────────── -->
@@ -186,7 +186,7 @@
         <item name="colorTextSecondary">@color/am_text_secondary</item>
         <item name="bgMainDrawable">#121212</item>
         <item name="android:windowBackground">#121212</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
         <item name="colorOnSurface">@color/am_text_primary</item>
         <item name="colorOnSurfaceVariant">@color/am_text_secondary</item>
         <item name="colorSurface">#121212</item>
@@ -199,7 +199,7 @@
         <item name="android:windowBackground">@drawable/bg_gradient_amethyst</item>
         <item name="colorBgBottomBar">@color/am_bg_bottom_bar</item>
         <item name="colorBgStatusBar">@color/am_bg_status_bar</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
     </style>
 
     <!-- ── Arctic ───────────────────────────────────────────── -->
@@ -215,7 +215,7 @@
         <item name="colorTextSecondary">@color/ar_text_secondary</item>
         <item name="bgMainDrawable">#121212</item>
         <item name="android:windowBackground">#121212</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
     </style>
     <style name="AppTheme.Arctic.Gradient">
         <item name="android:statusBarColor">@color/ar_bg_status_bar</item>
@@ -224,7 +224,7 @@
         <item name="android:windowBackground">@drawable/bg_gradient_arctic</item>
         <item name="colorBgBottomBar">@color/ar_bg_bottom_bar</item>
         <item name="colorBgStatusBar">@color/ar_bg_status_bar</item>
-        <item name="colorAccent">#D0D0D0</item>
+        <item name="colorAccent">#FF6D00</item>
         <item name="colorOnSurface">@color/ar_text_primary</item>
         <item name="colorOnSurfaceVariant">@color/ar_text_secondary</item>
         <item name="colorSurface">#121212</item>

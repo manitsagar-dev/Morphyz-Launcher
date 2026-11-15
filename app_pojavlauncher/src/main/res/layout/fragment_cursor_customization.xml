@@ -10,26 +10,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/pe4_page_bg"
-    android:clipChildren="false"
-    android:clipToPadding="false"
-    android:paddingTop="18dp"
-    android:paddingLeft="24dp"
-    android:paddingRight="24dp"
     android:orientation="vertical">
-
-    <!-- Invisible spacer line: hard-guarantees the command bar sits BELOW the
-         screen edge / camera cutout on every device, even if inset APIs lie. -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="22dp"
-        android:background="@android:color/transparent" />
 
     <!-- ── COMMAND BAR ──────────────────────────────────────────────── -->
     <LinearLayout
         android:id="@+id/cursor_top_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:minHeight="52dp"
+        android:layout_height="52dp"
         android:background="@drawable/pe5_topbar"
         android:gravity="center_vertical"
         android:orientation="horizontal"

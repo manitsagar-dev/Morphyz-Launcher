@@ -1,7 +1,5 @@
 package net.kdt.pojavlaunch.prefs.screens;
 
-import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE;
-import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED;
 
 import android.app.Activity;
 import android.app.AlertDialog;
