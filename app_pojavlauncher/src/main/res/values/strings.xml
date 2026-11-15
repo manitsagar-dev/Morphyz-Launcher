@@ -66,7 +66,7 @@
     <string name="mcl_setting_title_renderer_subtitle">Renderer specific settings</string>
     <string name="mcl_setting_category_renderer">Renderer</string>
     <string name="mcl_setting_renderer_gles2_4">Holy GL4ES - (1.21.4&lt; only, fast)</string>
-    <string name="mcl_setting_renderer_vulkan_zink">Zink (Vulkan) - (all versions, mid)</string>
+    <string name="mcl_setting_renderer_vulkan_zink">ZINK (VULKAN) - (all versions, mid)</string>
     <string name="mcl_setting_renderer_mobileglues">MobileGlues (OpenGL ES) - (1.17+ only, fast)</string>
     <string name="mcl_setting_renderer_freedreno">Freedreno (Adreno) - (1.20.x, fast, experimental)</string>
     <string name="mcl_setting_renderer_panfrost">Panfrost (Mali) - (up to 1.21.4, experimental)</string>
@@ -319,7 +319,7 @@
     <string name="cs_about_name">MORPHYZ LAUNCHER</string>
     <string name="cs_about_tagline">YOUR MINECRAFT. REIMAGINED.</string>
     <string name="cs_about_made_for">MADE WITH ❤ FOR MINECRAFT: JAVA EDITION ON ANDROID</string>
-    <string name="cs_about_credits_heading">Built on Legends</string>
+    <string name="cs_about_credits_heading">Credits</string>
     <string name="cs_about_credit_badge">CREDIT</string>
     <string name="cs_about_pojav_name">PojavLauncher</string>
     <string name="cs_about_pojav_role">THE ENGINE THAT STARTED IT ALL</string>
@@ -331,17 +331,16 @@
     <string name="cs_about_discord_title">Discord Community</string>
     <string name="cs_about_discord_sub">Join the server — help, mods, builds &amp; friends</string>
     <string name="cs_about_website_title">Official Website</string>
-    <string name="cs_about_website_sub">cs-launcher.netlify.app — news, guides &amp; downloads</string>
+    <string name="cs_about_website_sub">morphyzlauncher.vercel.app — news, guides &amp; downloads</string>
     <string name="cs_about_github_title">GitHub</string>
-    <string name="cs_about_github_sub">craftstudioteam — open source, free forever</string>
+    <string name="cs_about_github_sub">manitsagar-dev/Morphyz-Launcher — open source, free forever</string>
     <string name="cs_about_legal_heading">Legal Notice</string>
     <string name="cs_about_legal_text">MORPHYZ LAUNCHER is free, open-source software released under the GNU General Public License v3.0 (GPL v3). It is a fork of Amethyst (AngelAuraMC/Amethyst-Android), which itself builds upon PojavLauncher (PojavLauncherTeam/PojavLauncher) and the original Boardwalk by zhuowei. We are deeply grateful to all of these projects and their contributors.
 
 Minecraft is a trademark of Mojang Synergies AB / Microsoft Corporation. MORPHYZ LAUNCHER is an independent community project and is NOT affiliated with, endorsed by, or sponsored by Mojang or Microsoft. All Minecraft assets and content belong to their respective owners. To play online you need a legitimate Minecraft: Java Edition account.
 
 Third-party components (GL4ES, MobileGlues, ANGLE, Zink/Mesa, LWJGL, OpenJDK, SDL, and more) remain under their own respective licenses. See the NOTICE and LICENSE files inside the repository for full details.</string>
-    <string name="cs_about_footer">CRAFT STUDIO • FREE FOREVER • MADE WITH PASSION</string>
-    <string name="cs_about_coming_soon">The full About page is coming soon. For now: %1$s</string>
+    <string name="cs_about_footer">MORPHYZ • FREE FOREVER • MADE WITH PASSION</string>
     <string name="cs_launch_gif_title">Launch Screen GIF</string>
     <string name="cs_launch_gif_summary">Launch stays a clean black screen. Pick any GIF from storage to play on it while the game loads (up to 50 MB).</string>
     <string name="cs_launch_gif_remove_title">Remove Launch GIF</string>
@@ -412,8 +411,6 @@ Third-party components (GL4ES, MobileGlues, ANGLE, Zink/Mesa, LWJGL, OpenJDK, SD
     <string name="pt_neoforge_desc">Next-generation Forge</string>
     <string name="pt_modpack_name">Install Modpack</string>
     <string name="pt_modpack_desc">CurseForge, Modrinth or import a zip</string>
-    <string name="pt_bta_name">CS CLIENT</string>
-    <string name="pt_bta_desc">CS Client • Fabric • Build your profile</string>
     <string name="notification_terminate">Terminate</string>
     <string name="notification_game_runs">The game is running!</string>
     <string name="folder_dialog_create">Create</string>
@@ -465,7 +462,7 @@ Third-party components (GL4ES, MobileGlues, ANGLE, Zink/Mesa, LWJGL, OpenJDK, SD
     <string name="preference_force_big_core_title">Force the renderer to run on the big core</string>
     <string name="preference_force_big_core_desc">Forces the Minecraft render thread to run on the core with the highest maximum frequency.</string>
     <string name="preference_force_landscape_title">Force landscape orientation</string>
-    <string name="preference_force_landscape_summary">Retired: the launcher is always portrait. Every page (browse, skins) is drawn portrait-first, so the orientation is no longer a user choice.</string>
+    <string name="preference_force_landscape_summary">Morphyz Launcher is landscape-only — every page is drawn and locked for landscape. Portrait is not supported.</string>
     <string name="preference_category_launcher_appearance">Launcher appearance</string>
     <string name="preference_set_custom_bg_title">Set custom launcher background</string>
     <string name="preference_set_custom_bg_summary">Pick an image from your gallery to use as the launcher background.</string>
@@ -1021,7 +1018,7 @@ Third-party components (GL4ES, MobileGlues, ANGLE, Zink/Mesa, LWJGL, OpenJDK, SD
     <string name="mp_import_instructions">Paste a modpack share code below to import and recreate the profile.</string>
     <string name="mp_import_code_hint">Paste share code here</string>
     <string name="mp_import_code_required">Please enter a share code</string>
-    <string name="mp_import_invalid_code">Invalid share code format. Must start with CS-MP- or CS-MP-GH-</string>
+    <string name="mp_import_invalid_code">Invalid share code format. Must start with MORPHYZ-MP- or MORPHYZ-MP-GH-</string>
     <string name="mp_import_decoding">Decoding share code…</string>
     <string name="mp_import_downloading">Downloading from GitHub Gist…</string>
     <string name="mp_import_success">Modpack imported successfully!</string>

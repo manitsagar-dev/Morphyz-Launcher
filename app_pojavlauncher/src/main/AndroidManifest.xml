@@ -37,27 +37,28 @@
         android:isGame="true"
         android:label="@string/app_name"
         android:process=":launcher"
-        android:resizeableActivity="true"
+        android:resizeableActivity="false"
         android:theme="@style/AppTheme">
         <activity
             android:name=".MissingStorageActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="sensorLandscape" />
 
         <!-- Full-screen first-launch Java runtime installer.
-             sensorPortrait: the whole launcher UI is portrait (Morphyz redesign). -->
+             sensorLandscape: the whole launcher UI is landscape-only (user request). -->
         <activity
             android:name=".multirt.RuntimeSetupActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorPortrait" />
+            android:screenOrientation="sensorLandscape" />
 
         <!-- Server Hub: the launcher's own server list (built-in servers + saved ones).
-             sensorPortrait like every other launcher page (Morphyz redesign). -->
+             sensorLandscape like every other launcher page — landscape-only. -->
         <activity
             android:name=".servers.ServerHubActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorPortrait" />
+            android:screenOrientation="sensorLandscape" />
 
         <meta-data
             android:name="android.max_aspect"
@@ -68,7 +69,7 @@
             android:exported="true"
             android:label="@string/app_short_name"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorPortrait">
+            android:screenOrientation="sensorLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -83,7 +84,8 @@
             android:theme="@style/ShortcutTrampolineTheme"
             android:excludeFromRecents="true"
             android:taskAffinity=""
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:screenOrientation="sensorLandscape" />
 
         <!-- Receives confirmation that the home screen actually pinned a shortcut. -->
         <receiver
@@ -98,7 +100,7 @@
             android:name=".LauncherActivity"
             android:label="@string/app_short_name"
             android:hardwareAccelerated="true"
-            android:screenOrientation="sensorPortrait"
+            android:screenOrientation="sensorLandscape"
             android:windowSoftInputMode="adjustPan"/>
         <!-- adjustResize + FLAG_LAYOUT_NO_LIMITS got stuck after the IME closed:
              the window frame kept the shrunken height, so returning from
@@ -106,6 +108,7 @@
              adjustPan keeps the window frame fixed and pans content instead. -->
         <activity
             android:name=".ImportControlActivity"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="keyboard|keyboardHidden"
             android:exported="true"
             android:launchMode="singleInstance"
@@ -127,23 +130,26 @@
         <activity
             android:name=".FatalErrorActivity"
             android:process=":crash"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".CrashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
-            android:screenOrientation="sensorPortrait" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".ProfileLogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:exported="false"
-            android:screenOrientation="sensorPortrait" />
+            android:screenOrientation="sensorLandscape" />
 
         <activity android:name=".ShowErrorActivity"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity
             android:name=".ExitActivity"
+            android:screenOrientation="sensorLandscape"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:theme="@style/Theme.AppCompat.DayNight.Dialog" />
         <activity

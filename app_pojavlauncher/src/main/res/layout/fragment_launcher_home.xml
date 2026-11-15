@@ -55,7 +55,7 @@
             app:layout_constraintGuide_percent="0.47" />
 
         <!-- ═══ BRAND CLUSTER (top-left, Phase 8) ═══
-             Launcher mark + name, then two community pills: YouTube (red)
+             Launcher mark + name, then two community pills: Website (orange)
              and Discord (blurple). Mirrors the account chip on the right.
              Links come from CsLinks (same URLs as the About page). -->
         <LinearLayout
@@ -146,12 +146,12 @@
                 android:background="#2EFFFFFF" />
 
             <LinearLayout
-                android:id="@+id/lh_btn_youtube"
+                android:id="@+id/lh_btn_website"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:background="@drawable/bg_lh_pill_youtube"
+                android:background="@drawable/bg_lh_pill_website"
                 android:clickable="true"
-                android:contentDescription="Open the Morphyz Launcher YouTube channel"
+                android:contentDescription="Open the Morphyz Launcher website"
                 android:focusable="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -162,7 +162,7 @@
                     android:layout_width="15dp"
                     android:layout_height="15dp"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_brand_youtube" />
+                    android:src="@drawable/ic_website_orbit" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -170,7 +170,7 @@
                     android:layout_marginStart="6dp"
                     android:includeFontPadding="false"
                     android:letterSpacing="0.04"
-                    android:text="YouTube"
+                    android:text="Website"
                     android:textColor="#FFFFFF"
                     android:textSize="10.5sp"
                     android:textStyle="bold"
@@ -235,7 +235,7 @@
                 android:background="@drawable/bg_lh_card_icon"
                 android:padding="2dp"
                 android:src="@drawable/ic_profile_player"
-                app:tint="#8B5CF6"
+                app:tint="#FF6D00"
                 android:contentDescription="Account" />
 
             <TextView
@@ -264,7 +264,7 @@
                 android:letterSpacing="0.06"
                 android:paddingHorizontal="7dp"
                 android:paddingVertical="3dp"
-                android:background="@drawable/bg_hd_badge_purple"
+                android:background="@drawable/bg_hd_badge_orange"
                 android:includeFontPadding="false" />
 
             <ImageView
@@ -272,7 +272,7 @@
                 android:layout_height="13dp"
                 android:layout_marginStart="4dp"
                 android:src="@drawable/ic_chevron_down"
-                app:tint="#9A91B5"
+                app:tint="#A8A093"
                 android:contentDescription="@null" />
         </LinearLayout>
 
@@ -391,7 +391,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/minecraftia"
                         android:text="LAUNCHING"
-                        android:textColor="#A78BFA"
+                        android:textColor="#FF9E4A"
                         android:textSize="8sp"
                         android:letterSpacing="0.12"
                         android:includeFontPadding="false" />

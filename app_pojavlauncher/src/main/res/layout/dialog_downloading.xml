@@ -12,7 +12,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:src="@drawable/ic_star"
-        android:tint="@color/accent_purple_client" />
+        android:tint="@color/accent_orange_client" />
 
     <ImageView
         android:id="@+id/iv_download_success"

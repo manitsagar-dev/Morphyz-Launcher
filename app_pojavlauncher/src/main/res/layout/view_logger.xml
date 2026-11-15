@@ -405,7 +405,7 @@
                             android:layout_marginTop="3dp"
                             android:gravity="center"
                             android:letterSpacing="0.14"
-                            android:text="PLUS  •  CRAFT STUDIO"
+                            android:text="MORPHYZ  LAUNCHER"
                             android:textColor="#777984"
                             android:textSize="8sp"
                             android:textStyle="bold"

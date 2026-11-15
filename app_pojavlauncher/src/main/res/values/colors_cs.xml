@@ -9,7 +9,7 @@
        • Stroke                  0.75–1dp #2D2D35 family
        • Ripple                  platinum-alpha family (#1-3x FFFFFF/FFFFFF)
        • Semantic                installed green #22C55E · danger #FF4444
-     Legacy token names (cs_violet / cs_cyan / accent_purple / am_accent)
+     Legacy token names (cs_orange / cs_cyan / accent_orange / am_accent)
      are KEPT for ID compatibility but now resolve to metallic silver.
      ═══════════════════════════════════════════════════════════════════ -->
 <resources>
@@ -33,9 +33,9 @@
     <color name="cs_accent_glow">#59FF6D00</color>
 
     <!-- Glow accent — burnt orange (legacy name kept for ID compatibility) -->
-    <color name="cs_violet">#FF8C1A</color>
-    <color name="cs_violet_deep">#E65100</color>
-    <color name="cs_violet_soft">#33FF8C1A</color>
+    <color name="cs_orange">#FF8C1A</color>
+    <color name="cs_orange_deep">#E65100</color>
+    <color name="cs_orange_soft">#33FF8C1A</color>
 
     <!-- Legacy alias kept so Phase-1 references stay valid -->
     <color name="cs_cyan">#FF9E4A</color>

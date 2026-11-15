@@ -3,6 +3,6 @@
      soft top highlight — visually a different generation from the old card. -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#F2110E16" />
-    <stroke android:width="1dp" android:color="#2E2A38" />
+    <stroke android:width="1dp" android:color="#2B2925" />
     <corners android:radius="20dp" />
 </shape>

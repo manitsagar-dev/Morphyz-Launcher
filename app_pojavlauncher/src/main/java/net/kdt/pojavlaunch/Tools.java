@@ -1917,9 +1917,13 @@ public final class Tools {
         boolean deviceHasVulkan = checkVulkanSupport(context.getPackageManager());
         boolean deviceHasOpenGLES3 = JREUtils.getDetectedVersion() >= 3;
         File nativeDir = new File(Tools.NATIVE_LIB_DIR);
-        boolean appHasZink = new File(nativeDir, "libOSMesa.so").exists()
-                && new File(nativeDir, "libEGL_mesa.so").exists()
-                && new File(nativeDir, "libglxshim.so").exists();
+        // Kopper-Zink ships Mesa EGL + the Zink Gallium driver + the GLX shim.
+        // The old check required libOSMesa.so, which nothing in the build bundles,
+        // so Zink never showed up as a compatible renderer.
+        boolean appHasZink = new File(nativeDir, "libEGL_mesa.so").exists()
+                && new File(nativeDir, "libglxshim.so").exists()
+                && new File(nativeDir, "libzink_dri.so").exists()
+                && new File(nativeDir, "libglapi.so").exists();
         boolean appHasMobileGlues = new File(nativeDir, "libmobileglues.so").exists();
         boolean appHasLtw = new File(nativeDir, "libltw.so").exists();
         boolean appHasKrypton = new File(nativeDir, "libng_gl4es.so").exists();

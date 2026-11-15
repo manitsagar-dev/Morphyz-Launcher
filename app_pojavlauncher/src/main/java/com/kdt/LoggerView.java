@@ -646,7 +646,7 @@ public class LoggerView extends ConstraintLayout {
             int color = tag.contains("ERROR") ? 0xFFFF6B74
                     : tag.contains("WARN") ? 0xFFFFB020
                     : tag.contains("READY") ? 0xFFD2D6DE
-                    : tag.contains("MOD") ? 0xFFB8A7E8
+                    : tag.contains("MOD") ? 0xFFFF8C1A
                     : tag.contains("GRAPHICS") ? 0xFF91B7D9
                     : 0xFFB9BBC4;
             styled.setSpan(new android.text.style.ForegroundColorSpan(color),

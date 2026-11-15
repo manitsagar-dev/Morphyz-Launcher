@@ -49,7 +49,7 @@ public class VeilImguiOverrideDisable extends ClassVisitor implements ClassFileT
                 try { // Minecraft makes it ugly if we use println
                     System.out.write(("Morphyz Launcher: Patching VeilImGuiImpl for faulty setImGuiPath()...\n" +
                             "This issue is fixed in Veil 3.1.1 and above. See https://github.com/FoundryMC/Veil/commit/8e0e09365049a106bfa3634e2ed78a0310c5b4df\n" +
-                            "The intended target of this patch is Veil 3.1.0 and below. If you see this log output without Veil 3.1.0 or lower running, please report it to Craft Studio.\n" +
+                            "The intended target of this patch is Veil 3.1.0 and below. If you see this log output without Veil 3.1.0 or lower running, please report it to the Morphyz Launcher team.\n" +
                             "https://github.com/PAPA20000/CSL/issues/new").getBytes());
 
                     System.out.flush();

@@ -9,21 +9,21 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 
 /**
- * Phase 8 — the launcher's community links in ONE place.
+ * The launcher's community links in ONE place.
  *
- * <p>The About page, the CS Client promo and now the home brand cluster all
+ * <p>The About page and the home brand cluster all
  * point at the same channels; keeping the URLs here means one edit updates
- * every button. {@link #open} tries the native app first (the YouTube /
- * Discord app claims these URLs) and falls back to the browser.
+ * every button. {@link #open} tries the native app first (the Discord app
+ * claims the invite URL) and falls back to the browser.
  */
 public final class CsLinks {
 
-    /** Same invite as {@code AboutFragment}. */
-    public static final String DISCORD = "https://discord.gg/bpgYQMA59D";
-    /** Same channel as {@code CsClientPromoDialog}. */
-    public static final String YOUTUBE = "https://youtube.com/@craft-studio-official";
-    public static final String WEBSITE = "https://cs-launchel.vercel.app/";
-    public static final String GITHUB = "https://github.com/craftstudioteam";
+    /** Official Discord invite. */
+    public static final String DISCORD = "https://discord.gg/DRw67Y7PhY";
+    /** Official website. */
+    public static final String WEBSITE = "https://morphyzlauncher.vercel.app";
+    /** Source repository. */
+    public static final String GITHUB = "https://github.com/manitsagar-dev/Morphyz-Launcher";
 
     private CsLinks() {}
 

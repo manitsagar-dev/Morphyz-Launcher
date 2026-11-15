@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- MP INSTALL CTA — platinum beam capsule with violet tail -->
+<!-- MP INSTALL CTA — platinum beam capsule with orange tail -->
 <ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="#33000000">
     <item android:id="@android:id/background">
         <shape android:shape="rectangle">

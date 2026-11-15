@@ -9,13 +9,13 @@
     <item>
         <shape android:shape="oval">
             <gradient android:type="radial" android:centerX="0.12" android:centerY="0.02"
-                android:gradientRadius="330dp" android:startColor="#1F3DC2FF" android:endColor="#003DC2FF"/>
+                android:gradientRadius="330dp" android:startColor="#1FFFB25C" android:endColor="#00FFB25C"/>
         </shape>
     </item>
     <item>
         <shape android:shape="oval">
             <gradient android:type="radial" android:centerX="0.92" android:centerY="0.88"
-                android:gradientRadius="390dp" android:startColor="#1F7C5CFF" android:endColor="#007C5CFF"/>
+                android:gradientRadius="390dp" android:startColor="#1FFF6D00" android:endColor="#00FF6D00"/>
         </shape>
     </item>
 </layer-list>

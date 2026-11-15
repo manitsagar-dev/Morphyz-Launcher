@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Profile hero backdrop — deep violet-grey glass with soft bottom fade. -->
+<!-- Profile hero backdrop — deep orange-grey glass with soft bottom fade. -->
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <gradient android:angle="135" android:startColor="#1C1730" android:centerColor="#16121F" android:endColor="#100D18" />
+            <gradient android:angle="135" android:startColor="#1F1510" android:centerColor="#17110E" android:endColor="#120E0A" />
         </shape>
     </item>
     <item>

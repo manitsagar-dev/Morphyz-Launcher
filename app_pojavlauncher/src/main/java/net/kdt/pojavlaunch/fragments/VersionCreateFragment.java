@@ -144,6 +144,8 @@ public class VersionCreateFragment extends Fragment implements CropperUtils.Crop
     private LinearLayout mChipsContainer;
     private final List<TextView> mChipViews = new ArrayList<>();
     private View mLoaderVersionRow;
+    private View mSodiumRow;
+    private androidx.appcompat.widget.SwitchCompat mSodiumSwitch;
     private TextView mLoaderVersionLabel, mLoaderVersionValue;
     private View mMinecraftField;
     private TextView mMinecraftVersionValue;
@@ -196,6 +198,18 @@ public class VersionCreateFragment extends Fragment implements CropperUtils.Crop
         mMinecraftField = view.findViewById(R.id.vcreate_mc_version_field);
         mMinecraftVersionValue = view.findViewById(R.id.vcreate_mc_version_value);
         mHint = view.findViewById(R.id.vcreate_hint);
+        mSodiumRow = view.findViewById(R.id.vcreate_sodium_row);
+        mSodiumSwitch = view.findViewById(R.id.vcreate_sodium_switch);
+        if (mSodiumSwitch != null) {
+            mSodiumSwitch.setChecked(net.kdt.pojavlaunch.modloaders.SodiumAutoInstaller.isEnabled());
+            mSodiumSwitch.setOnCheckedChangeListener((buttonView, checked) ->
+                    net.kdt.pojavlaunch.modloaders.SodiumAutoInstaller.setEnabled(checked));
+        }
+        if (mSodiumRow != null) {
+            mSodiumRow.setOnClickListener(v -> {
+                if (mSodiumSwitch != null) mSodiumSwitch.toggle();
+            });
+        }
         mNameField = view.findViewById(R.id.vcreate_name);
         mIconView = view.findViewById(R.id.vcreate_icon);
         mCreateButton = view.findViewById(R.id.vcreate_create);
@@ -508,6 +522,10 @@ public class VersionCreateFragment extends Fragment implements CropperUtils.Crop
         boolean vanilla = index == LDR_VANILLA;
         boolean fabricLike = index == LDR_FABRIC || index == LDR_QUILT;
         boolean derived = index == LDR_FORGE || index == LDR_NEOFORGE || index == LDR_JAR || index == LDR_OPTIFINE;
+
+        if (mSodiumRow != null) {
+            mSodiumRow.setVisibility(fabricLike ? View.VISIBLE : View.GONE);
+        }
 
         // Loader-version row: only the fields the selected loader actually has.
         // With no loader yet it stays visible as the "pick any build" entry.
