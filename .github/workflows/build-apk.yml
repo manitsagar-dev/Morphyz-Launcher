@@ -33,12 +33,14 @@ jobs:
           java-version: 17
           cache: gradle
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
       - name: Install SDK packages (with NDK r27 fallback)
         run: |
           set -e
+          # ubuntu-latest ships the Android SDK preinstalled; make sure sdkmanager is on PATH
+          if ! command -v sdkmanager > /dev/null; then
+            export PATH="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin:$ANDROID_SDK_ROOT/tools/bin:$PATH"
+          fi
+          sdkmanager --version
           yes | sdkmanager --licenses > /dev/null || true
           sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
           if sdkmanager "ndk;27.3.13750724"; then
