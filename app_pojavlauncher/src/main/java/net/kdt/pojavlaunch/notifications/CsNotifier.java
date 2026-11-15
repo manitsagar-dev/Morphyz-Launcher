@@ -365,7 +365,7 @@ public final class CsNotifier {
             mBarTrack.setLayoutParams(trackLp);
             mFill = new View(ctx);
             GradientDrawable fill = new GradientDrawable(GradientDrawable.Orientation.TL_BR,
-                    new int[]{0xFF9C7BD8, 0xFF7A5BC0});
+                    new int[]{0xFFFF9E4A, 0xFFFF6D00});
             fill.setCornerRadius(2 * mDp);
             mFill.setBackground(fill);
             mBarTrack.addView(mFill, new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT));
@@ -375,12 +375,12 @@ public final class CsNotifier {
             if (actionLabel != null && action != null && mType == TYPE_ERROR) {
                 mAction = new TextView(ctx);
                 mAction.setText(actionLabel);
-                mAction.setTextColor(0xFFC4B5FD);
+                mAction.setTextColor(0xFFFF9E4A);
                 mAction.setTextSize(11f);
                 mAction.setTypeface(Typeface.DEFAULT_BOLD);
                 mAction.setIncludeFontPadding(false);
                 mAction.setPadding((int) (10 * mDp), (int) (5 * mDp), (int) (10 * mDp), (int) (5 * mDp));
-                mAction.setBackground(cardBg(0x00000000, 0x33C4B5FD));
+                mAction.setBackground(cardBg(0x00000000, 0x33FF9E4A));
                 LinearLayout.LayoutParams alp = new LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 alp.topMargin = (int) (8 * mDp);
@@ -468,7 +468,7 @@ public final class CsNotifier {
             switch (type) {
                 case TYPE_SUCCESS: return 0xFF8FEBBC;
                 case TYPE_ERROR: return 0xFFFF8A9B;
-                case TYPE_PROGRESS: return 0xFFB39DF0;
+                case TYPE_PROGRESS: return 0xFFFF9E4A;
                 default: return 0xFFC9C4D8;
             }
         }

@@ -4,7 +4,7 @@
      Top status bar (back · title · version key-cap), then a two-column
      dossier: LEFT fixed identity card (logo, name, tagline, channel
      links), RIGHT scrolling manifest with numbered sections —
-     01 TEAM (2×2 tiles) · 02 LINEAGE (Pojav / Amethyst) · 03 LEGAL.
+     01 CREDITS (Marvo) · 02 LINEAGE (Pojav / Amethyst) · 03 LEGAL.
      Ids used by AboutFragment preserved (about_*).
      ═══════════════════════════════════════════════════════════════════ -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -192,65 +192,28 @@
                 android:orientation="vertical"
                 android:paddingBottom="12dp">
 
-                <!-- 01 TEAM -->
+                <!-- 01 CREDITS -->
                 <LinearLayout style="@style/AbSectionHead">
                     <TextView style="@style/AbIndex" android:text="01" />
-                    <TextView android:id="@+id/about_credits_heading" style="@style/AbSectionTitle" android:text="Team" />
+                    <TextView android:id="@+id/about_credits_heading" style="@style/AbSectionTitle" android:text="Credits" />
                     <View style="@style/AbRule" />
-                    <TextView style="@style/AbSectionMeta" android:text="CRAFT STUDIO" />
+                    <TextView style="@style/AbSectionMeta" android:text="MORPHYZ" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:baselineAligned="false"
                     android:orientation="horizontal">
 
-                    <LinearLayout style="@style/AbTeamTile" android:layout_marginEnd="5dp">
+                    <LinearLayout style="@style/AbTeamTile">
                         <FrameLayout style="@style/AbAvatarRing">
-                            <net.kdt.pojavlaunch.ui.AvatarView style="@style/AbAvatar" android:src="@drawable/cs_team_rohit" />
+                            <net.kdt.pojavlaunch.ui.AvatarView style="@style/AbAvatar" android:src="@drawable/marvo_avatar" />
                         </FrameLayout>
                         <LinearLayout style="@style/AbTeamTextCol">
-                            <TextView style="@style/AbTeamName" android:text="ROHIT_45" />
-                            <TextView style="@style/AbTeamRole" android:text="LEAD DEVELOPER" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/AbTeamTile" android:layout_marginStart="5dp">
-                        <FrameLayout style="@style/AbAvatarRing">
-                            <net.kdt.pojavlaunch.ui.AvatarView style="@style/AbAvatar" android:src="@drawable/cs_team_notdanger" />
-                        </FrameLayout>
-                        <LinearLayout style="@style/AbTeamTextCol">
-                            <TextView style="@style/AbTeamName" android:text="NOT DANGER" />
-                            <TextView style="@style/AbTeamRole" android:text="FOUNDER" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:baselineAligned="false"
-                    android:orientation="horizontal">
-
-                    <LinearLayout style="@style/AbTeamTile" android:layout_marginEnd="5dp">
-                        <FrameLayout style="@style/AbAvatarRing">
-                            <net.kdt.pojavlaunch.ui.AvatarView style="@style/AbAvatar" android:src="@drawable/cs_team_mineradi" />
-                        </FrameLayout>
-                        <LinearLayout style="@style/AbTeamTextCol">
-                            <TextView style="@style/AbTeamName" android:text="MINER_ADI" />
-                            <TextView style="@style/AbTeamRole" android:text="FOUNDER" />
-                        </LinearLayout>
-                    </LinearLayout>
-
-                    <LinearLayout style="@style/AbTeamTile" android:layout_marginStart="5dp">
-                        <FrameLayout style="@style/AbAvatarRing">
-                            <net.kdt.pojavlaunch.ui.AvatarView style="@style/AbAvatar" android:src="@drawable/cs_team_ender" />
-                        </FrameLayout>
-                        <LinearLayout style="@style/AbTeamTextCol">
-                            <TextView style="@style/AbTeamName" android:text="ENDER" />
-                            <TextView style="@style/AbTeamRole" android:text="FOUNDER" />
+                            <TextView style="@style/AbTeamName" android:text="MARVO" />
+                            <TextView style="@style/AbTeamRole" android:text="FOUNDER &amp; DEVELOPER" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

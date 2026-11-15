@@ -451,7 +451,7 @@ public class JREUtils {
 
         // Resolve/fallback the renderer before exporting renderer-specific
         // environment variables. Previously a failed Zink/Gallium dlopen left
-        // its Mesa variables active even after falling back to Krypton.
+        // its Mesa variables active even after falling back to another renderer.
         final String graphicsLib = loadGraphicsLibrary();
         setJavaEnvironment(activity, runtimeHome);
         List<String> userArgs = getJavaArgs(activity, runtimeHome, userArgsString);
@@ -754,7 +754,7 @@ public class JREUtils {
             case "opengles2_5":
             case "opengles3":
                 renderLibrary = "libgl4es_115.so"; break;
-            case "vulkan_zink": renderLibrary = "libOSMesa.so"; break;
+            case "vulkan_zink": renderLibrary = "libglxshim.so"; break; // legacy id — same kopper path everywhere else
             case "opengles_mobileglues": renderLibrary = "libmobileglues.so"; break;
             case "opengles3_desktopgl_zink":
             case "opengles3_desktopgl_zink_kopper": renderLibrary = "libglxshim.so"; break;
@@ -762,24 +762,26 @@ public class JREUtils {
             case "opengles3_KW" : renderLibrary = "libng_gl4es.so"; break;
             // CS Task 5: OSMesa gallium renderers (arm64-only builds).
             // Freedreno targets Adreno, Panfrost targets Mali. Both are
-            // self-contained gallium OSMesa builds driven through the existing
-            // osm_bridge path (same mechanism as vulkan_zink).
+            // self-contained gallium OSMesa builds loaded directly.
             case "gallium_freedreno": renderLibrary = "libOSMesa_8.so"; break;
             case "gallium_panfrost": renderLibrary = "libOSMesa_2300d.so"; break;
             default:
-                Log.w("RENDER_LIBRARY", "No renderer selected, defaulting to Krypton Wrapper");
-                renderLibrary = "libng_gl4es.so";
+                Log.w("RENDER_LIBRARY", "No renderer selected, defaulting to Holy GL4ES");
+                LOCAL_RENDERER = "opengles2";
+                renderLibrary = "libgl4es_115.so";
                 break;
         }
 
         if (!dlopen(renderLibrary) && !dlopen(findInLdLibPath(renderLibrary))) {
-            // Never strand the user on legacy GL4ES 1.1.4 — it cannot run Sodium on
-            // modern Minecraft (invisible chunks/blocks). Krypton Wrapper is the
-            // maintained GL4ES successor and is bundled with the launcher.
-            Log.e("RENDER_LIBRARY","Failed to load renderer " + renderLibrary + ". Falling back to Krypton Wrapper");
-            LOCAL_RENDERER = "opengles3_KW";
-            renderLibrary = "libng_gl4es.so";
-            dlopen(NATIVE_LIB_DIR + "/libng_gl4es.so");
+            // Krypton Wrapper is NOT bundled with the launcher, so falling back
+            // to it could only strand the user on a black screen. The one renderer
+            // guaranteed to ship in every build is Holy GL4ES — land there instead.
+            Log.e("RENDER_LIBRARY","Failed to load renderer " + renderLibrary + ". Falling back to Holy GL4ES");
+            LOCAL_RENDERER = "opengles2";
+            renderLibrary = "libgl4es_115.so";
+            if (!dlopen(NATIVE_LIB_DIR + "/libgl4es_115.so")) {
+                dlopen(findInLdLibPath(renderLibrary));
+            }
         }
         return renderLibrary;
     }

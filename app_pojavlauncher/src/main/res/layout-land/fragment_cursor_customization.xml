@@ -426,7 +426,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
                         <ImageView android:id="@+id/color_green" style="@style/CsColorSwatch" android:backgroundTint="#A6FF3D" android:contentDescription="@null" />
-                        <ImageView android:id="@+id/color_cyan" style="@style/CsColorSwatch" android:backgroundTint="#22C9CB" android:contentDescription="@null" />
+                        <ImageView android:id="@+id/color_cyan" style="@style/CsColorSwatch" android:backgroundTint="#FF8C1A" android:contentDescription="@null" />
                         <ImageView android:id="@+id/color_purple" style="@style/CsColorSwatch" android:backgroundTint="#8B5CF6" android:contentDescription="@null" />
                         <ImageView android:id="@+id/color_red" style="@style/CsColorSwatch" android:backgroundTint="#FF3D00" android:contentDescription="@null" />
                         <ImageView android:id="@+id/color_yellow" style="@style/CsColorSwatch" android:backgroundTint="#FFEA00" android:contentDescription="@null" />

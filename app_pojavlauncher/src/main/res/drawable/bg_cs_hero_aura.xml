@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- HERO AURA — brand violet glow bleeding down the hero card (the
+<!-- HERO AURA — brand orange glow bleeding down the hero card (the
      "client features" identity color, used sparingly as ambient light). -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">

@@ -22,7 +22,7 @@
             android:layout_width="17dp"
             android:layout_height="17dp"
             android:src="@drawable/ic_add"
-            app:tint="#C9B8FF"
+            app:tint="#FFB25C"
             android:contentDescription="@null" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="New Instance"
-            android:textColor="#C9B8FF"
+            android:textColor="#FFB25C"
             android:textSize="12sp"
             android:textStyle="bold"
             android:letterSpacing="0.04"

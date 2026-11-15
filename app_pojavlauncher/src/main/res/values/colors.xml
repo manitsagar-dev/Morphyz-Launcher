@@ -87,9 +87,9 @@
     <!-- Accent colors (Morphyz Orange) -->
     <color name="accent_primary">#FF6D00</color>
     <color name="accent_light">#FF9E4A</color>
-    <color name="accent_purple">#FF6D00</color>
-    <color name="accent_purple_client">#FF8C1A</color>
-    <color name="accent_purple_deep">#E65100</color>
+    <color name="accent_orange">#FF6D00</color>
+    <color name="accent_orange_client">#FF8C1A</color>
+    <color name="accent_orange_deep">#E65100</color>
     <color name="accent_bg_subtle">#241209</color>
     <color name="accent_border">#FF6D00</color>
 

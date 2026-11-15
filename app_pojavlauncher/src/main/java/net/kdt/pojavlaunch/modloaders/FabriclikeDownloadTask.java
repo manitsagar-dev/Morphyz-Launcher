@@ -101,6 +101,14 @@ public class FabriclikeDownloadTask implements Runnable, Tools.DownloaderFeedbac
                     .putString(LauncherPreferences.PREF_KEY_CURRENT_PROFILE, profileKey)
                     .apply();
             LauncherProfiles.write();
+
+            // The create-instance screen's Sodium toggle: drop a matching
+            // Sodium build into the fresh instance's mods/ folder. Best-effort
+            // and non-blocking for the caller's flow — failures only log.
+            if (SodiumAutoInstaller.isEnabled()) {
+                SodiumAutoInstaller.installForNewProfile(profileKey, installedProfile,
+                        mGameVersion, mUtils.getName());
+            }
         }
         return true;
     }

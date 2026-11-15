@@ -58,7 +58,7 @@
                     android:textSize="11sp" />
             </HorizontalScrollView>
         </androidx.core.widget.NestedScrollView>
-        <ProgressBar android:id="@+id/profile_log_loading" android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:indeterminateTint="#22C9CB" />
+        <ProgressBar android:id="@+id/profile_log_loading" android:layout_width="32dp" android:layout_height="32dp" android:layout_gravity="center" android:indeterminateTint="#FF8C1A" />
     </FrameLayout>
 
     <LinearLayout

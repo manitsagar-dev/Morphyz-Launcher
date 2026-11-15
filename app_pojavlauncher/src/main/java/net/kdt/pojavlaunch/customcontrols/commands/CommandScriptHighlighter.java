@@ -15,7 +15,7 @@ import androidx.annotation.NonNull;
  */
 public final class CommandScriptHighlighter implements TextWatcher {
 
-    private static final int COMMAND = 0xFFB9A5FF;
+    private static final int COMMAND = 0xFFFF9E4A;
     private static final int DIRECTIVE = 0xFFFFB020;
     private static final int COMMENT = 0xFF6B7280;
     private static final int VARIABLE = 0xFF7DD3FC;

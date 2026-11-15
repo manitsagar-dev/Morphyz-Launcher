@@ -20,7 +20,7 @@
 
 <img src="assets/readme/ui-showcase.png" alt="Morphyz Launcher — design concept" width="100%">
 
-<sub>Design concept for the portrait UI (orange-on-obsidian theme) — screens shown are the redesign in progress, not shipped screenshots yet.</sub>
+<sub>Design concept for the landscape UI (orange-on-obsidian theme) — screens shown are the redesign in progress, not shipped screenshots yet.</sub>
 
 </div>
 
@@ -46,13 +46,13 @@ resource packs and one-tap modpack installs from Modrinth and CurseForge.
 - **Built-in mod & modpack browser** — search and install from Modrinth and CurseForge without leaving the launcher.
 - **Accounts** — local (offline) accounts by default, plus Microsoft, Ely.by and custom Yggdrasil servers (authlib-injector).
 - **Automatic Java runtime setup** — downloads and configures the right runtime for your device on first launch.
-- **Performance tooling** — renderer picker (Holy GL4ES / LTW / MobileGlues / Zink / Virgl), JVM tuning presets and a thermal governor.
+- **Performance tooling** — renderer picker (Holy GL4ES / ZINK (VULKAN) / Freedreno / LTW (OpenGL ES 3), plus MobileGlues / Krypton Wrapper when bundled), JVM tuning presets and a thermal governor.
 - **Touch & gamepad controls** — on-screen controls with a full gamepad button-remapper.
 - **Worlds & servers** — world manager with backup/export, and a server hub with live ping.
 - **Capes & skins** — cape browser and skin management (upload, switch, reset).
 - **Shortcuts** — pin any profile straight to your home screen.
 - **Themes** — premium dark design system with per-theme presets.
-- **Portrait UI** — the launcher is designed portrait-first.
+- **Landscape-only UI** — the whole launcher runs and is locked to landscape.
 
 ---
 

@@ -1,6 +1,5 @@
 package net.kdt.pojavlaunch;
 
-import static android.content.res.Configuration.ORIENTATION_PORTRAIT;
 import static net.kdt.pojavlaunch.Tools.hasNoOnlineProfileDialog;
 
 import android.Manifest;
@@ -246,7 +245,7 @@ public class LauncherActivity extends BaseActivity {
             // Always open settings full-screen to match the new UI transformation
             Tools.swapFragment(this, LauncherPreferenceFragment.class, SETTING_FRAGMENT_TAG, null);
         } else {
-            // Portrait: the settings button doubles as a home button when not on main menu
+            // Settings button doubles as a home button when not on main menu
             Tools.backToMainMenu(this);
         }
     };
@@ -682,9 +681,9 @@ public class LauncherActivity extends BaseActivity {
         setTheme(R.style.AppTheme);
         LauncherPreferences.DEFAULT_PREF.edit().remove("launcher_theme").remove("enable_bg_gradient").apply();
         
-        // The launcher UI is designed portrait-first (Morphyz redesign, matching
-        // the showcase screens): keep every flow in portrait.
-        setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT);
+        // Landscape-only: the whole launcher runs on its side. Sensor (not
+        // locked) so tablets / foldables get both landscape rotations.
+        setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
 
         setContentView(R.layout.activity_pojav_launcher);
         // Full-bleed window: cutout mode follows the user's "Ignore camera

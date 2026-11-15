@@ -349,6 +349,60 @@
                         android:textColor="#9AA0AC"
                         android:textSize="11sp"
                         android:visibility="gone" />
+
+                    <!-- Conditional: auto-install Sodium (Fabric/Quilt only) -->
+                    <LinearLayout
+                        android:id="@+id/vcreate_sodium_row"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginBottom="14dp"
+                        android:background="@drawable/bg_creation_field"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="16dp"
+                        android:paddingVertical="10dp"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-medium"
+                                android:letterSpacing="0.08"
+                                android:text="AUTO-INSTALL SODIUM"
+                                android:textColor="#F4F6F9"
+                                android:textSize="11sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:fontFamily="sans-serif"
+                                android:lineSpacingMultiplier="1.15"
+                                android:text="Fetch the matching Sodium build from Modrinth into the new instance"
+                                android:textColor="#9AA0AC"
+                                android:textSize="10sp" />
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.SwitchCompat
+                            android:id="@+id/vcreate_sodium_switch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:checked="true"
+                            android:clickable="false"
+                            android:focusable="false"
+                            app:thumbTint="@color/switch_thumb_selector"
+                            app:trackTint="@color/switch_track_selector" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
