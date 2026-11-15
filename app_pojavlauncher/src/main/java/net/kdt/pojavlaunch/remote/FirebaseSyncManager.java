@@ -105,8 +105,14 @@ public final class FirebaseSyncManager {
         String custom = dbUrlFromPrefs(ctx);
         if (!custom.isEmpty()) return custom;
         try {
-            String res = ctx.getString(R.string.firebase_database_url);
-            if (res != null && res.startsWith("https://")) return res;
+            // Resolved by name so the app builds with or without the
+            // google-services plugin-generated values (e.g. google-services.json absent).
+            int resId = ctx.getResources().getIdentifier(
+                "firebase_database_url", "string", ctx.getPackageName());
+            if (resId != 0) {
+                String res = ctx.getString(resId);
+                if (res != null && res.startsWith("https://")) return res;
+            }
         } catch (Throwable ignored) {}
         return "https://cs-launcher-v3-default-rtdb.asia-southeast1.firebasedatabase.app";
     }
