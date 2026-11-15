@@ -21,7 +21,7 @@ import net.kdt.pojavlaunch.prefs.LauncherPreferences;
 import net.kdt.pojavlaunch.sound.CsSoundPlayer;
 
 /**
- * CS Launcher Plus — first-launch thank-you popup.
+ * Morphyz Launcher — first-launch thank-you popup.
  *
  * <p>Shown exactly once, in the first-launch chain between the runtime
  * installer ({@code RuntimeSetupActivity}) and the Home tutorial: the Home

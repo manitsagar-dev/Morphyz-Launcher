@@ -27,7 +27,7 @@ import java.util.Map;
 
 /**
  * ═══════════════════════════════════════════════════════════════════════════
- * CS LAUNCHER PLUS — advanced in-app notification system.
+ * MORPHYZ LAUNCHER — advanced in-app notification system.
  *
  * Floating stacked cards (top-end, cutout/status-inset aware) for downloads,
  * game-launch phases, runtime installs, profile operations, account switches,

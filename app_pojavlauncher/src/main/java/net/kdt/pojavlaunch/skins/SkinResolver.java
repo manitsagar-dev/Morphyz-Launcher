@@ -217,7 +217,7 @@ public final class SkinResolver {
             c = (HttpURLConnection) new URL("https://skinsystem.ely.by/textures/" + name).openConnection();
             c.setConnectTimeout(TIMEOUT_MS);
             c.setReadTimeout(TIMEOUT_MS);
-            c.setRequestProperty("User-Agent", "CS-Launcher-Plus");
+            c.setRequestProperty("User-Agent", "MorphyzLauncher");
             int code = c.getResponseCode();
             if (code != 200) return null;
             String body;
@@ -260,7 +260,7 @@ public final class SkinResolver {
             c.setConnectTimeout(TIMEOUT_MS);
             c.setReadTimeout(TIMEOUT_MS);
             c.setInstanceFollowRedirects(false);
-            c.setRequestProperty("User-Agent", "CS-Launcher-Plus");
+            c.setRequestProperty("User-Agent", "MorphyzLauncher");
             int code = c.getResponseCode();
             if (code == 301 || code == 302 || code == 303 || code == 307 || code == 308) {
                 String loc = c.getHeaderField("Location");

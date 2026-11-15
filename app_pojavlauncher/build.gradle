@@ -1,12 +1,14 @@
 plugins {
     id 'com.android.application' version '8.7.2'
-    id 'com.google.gms.google-services'
+    // com.google.gms.google-services is applied conditionally at the bottom of
+    // this file — only when google-services.json exists — so the project also
+    // builds without it (forks / CI). Firebase features stay disabled then.
 }
 
 static def getDate() { return new Date().format('yyyyMMdd') }
 
 def getVersionName = {
-    // Show clean "CS Launcher Plus v3.1" style version names.
+    // Show clean "Morphyz Launcher v3.1" style version names.
     String semVer = "3.1.0"
     
     // Try to get a git tag for the full version
@@ -114,8 +116,8 @@ android {
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.customDebug
-            resValue "string", "app_name", "CS Launcher Plus"
-            resValue "string", "app_short_name", "CS Launcher Plus"
+            resValue "string", "app_name", "Morphyz Launcher"
+            resValue "string", "app_short_name", "Morphyz Launcher"
             resValue 'string', 'application_package', 'com.cslaucher.plus.debug'
             resValue 'string', 'storageProviderAuthorities', 'com.cslaucher.plus.scoped.gamefolder.debug'
             resValue 'string', 'shareProviderAuthority', 'com.cslaucher.plus.scoped.controlfolder.debug'
@@ -138,8 +140,8 @@ android {
             // defaultConfig already set
             // multiDexEnabled = true
             signingConfig signingConfigs.release
-            resValue "string", "app_name", "CS Launcher Plus"
-            resValue "string", "app_short_name", "CS Launcher Plus"
+            resValue "string", "app_name", "Morphyz Launcher"
+            resValue "string", "app_short_name", "Morphyz Launcher"
             resValue 'string', 'storageProviderAuthorities', 'com.cslaucher.plus.gamefolder'
             resValue 'string', 'application_package', 'com.cslaucher.plus'
         }
@@ -149,7 +151,8 @@ android {
         }
     }
 
-    ndkVersion = "27.3.13750724"
+    // Overridable for CI environments that ship a slightly different NDK r27
+    ndkVersion = (project.findProperty("ndkVersion") as String) ?: "27.3.13750724"
 
     externalNativeBuild {
         ndkBuild {
@@ -287,4 +290,11 @@ tasks.configureEach { task ->
             logger.lifecycle("APK slimming: removed ${(freed / 1048576) as long} MB of x86/x86_64 assets")
         }
     }
+}
+
+// ── Firebase: apply only when a real google-services.json is present ─────────
+if (file("${projectDir}/google-services.json").exists()) {
+    apply plugin: 'com.google.gms.google-services'
+} else {
+    logger.lifecycle('BUILD: google-services.json not found — Firebase disabled (build continues)')
 }

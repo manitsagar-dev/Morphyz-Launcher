@@ -49,7 +49,7 @@ public final class HomeTutorial {
 
                 // ── Task 1: Welcome ─────────────────────────────────
                 .addTask(new TutorialTask.Builder("task_welcome")
-                        .title("WELCOME TO CS LAUNCHER PLUS!")
+                        .title("WELCOME TO MORPHYZ LAUNCHER!")
                         .description("Let's take a quick interactive tour of your Home Screen.")
                         .target(TutorialTarget.none())
                         .actionType(TutorialActionType.INFORMATION)

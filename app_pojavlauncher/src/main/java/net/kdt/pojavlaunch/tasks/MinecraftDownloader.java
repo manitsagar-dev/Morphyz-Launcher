@@ -432,7 +432,7 @@ public class MinecraftDownloader {
                 versionJsonFile = createGameJsonPath(versionName);
             }
         }
-        Log.d("CS_LAUNCHER", "Version JSON path: " + versionJsonFile.getAbsolutePath());
+        Log.d("MORPHYZ_LAUNCHER", "Version JSON path: " + versionJsonFile.getAbsolutePath());
         if(!isVersionJsonUsable(versionJsonFile)) {
             // Explain the real reason instead of the blanket "re-install" advice.
             String detail;
@@ -444,7 +444,7 @@ public class MinecraftDownloader {
                 detail = "it was not found in Mojang's version list and has no valid local installation - please re-install the version";
             }
             String message = "Failed to load version: " + versionName + " (" + detail + ").";
-            Log.e("CS_LAUNCHER", message);
+            Log.e("MORPHYZ_LAUNCHER", message);
             new Handler(Looper.getMainLooper()).post(() -> {
                 if(activity != null && !activity.isFinishing()) {
                     Toast.makeText(activity, message, Toast.LENGTH_LONG).show();

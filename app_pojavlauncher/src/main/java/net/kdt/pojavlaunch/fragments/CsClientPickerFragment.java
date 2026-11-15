@@ -141,7 +141,7 @@ public class CsClientPickerFragment extends Fragment {
         if(url==null||url.isEmpty())return;view.setTag(url);Bitmap cached=ICONS.get(url);if(cached!=null){view.setPadding(0,0,0,0);view.setImageBitmap(cached);return;}
         PojavApplication.sExecutorService.execute(()->{
             HttpURLConnection connection=null;
-            try{connection=(HttpURLConnection)new URL(url).openConnection();connection.setConnectTimeout(7000);connection.setReadTimeout(9000);connection.setRequestProperty("User-Agent","CS-Launcher-Plus/1.0");
+            try{connection=(HttpURLConnection)new URL(url).openConnection();connection.setConnectTimeout(7000);connection.setReadTimeout(9000);connection.setRequestProperty("User-Agent","MorphyzLauncher/1.0");
                 try(InputStream input=connection.getInputStream()){Bitmap bitmap=BitmapFactory.decodeStream(input);if(bitmap!=null){ICONS.put(url,bitmap);Tools.runOnUiThread(()->{if(isAdded()&&url.equals(view.getTag())){view.setPadding(0,0,0,0);view.setImageBitmap(bitmap);view.setAlpha(0f);view.animate().alpha(1f).setDuration(180).start();}});}}
             }catch(Exception ignored){}finally{if(connection!=null)connection.disconnect();}
         });

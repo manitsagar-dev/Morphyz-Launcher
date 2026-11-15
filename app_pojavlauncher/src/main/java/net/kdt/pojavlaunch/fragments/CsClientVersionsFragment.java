@@ -19,7 +19,7 @@ import net.kdt.pojavlaunch.csclient.CsClientSelection;
 import java.util.List;
 
 /**
- * CS Client — version picker (Aurora design, CS Launcher Plus V1.0).
+ * CS Client — version picker (Aurora design, Morphyz Launcher V1.0).
  *
  * <p>Hero brand card + version cards that cascade in with the shared
  * {@code aur_cascade} layout animation; each card uses the new

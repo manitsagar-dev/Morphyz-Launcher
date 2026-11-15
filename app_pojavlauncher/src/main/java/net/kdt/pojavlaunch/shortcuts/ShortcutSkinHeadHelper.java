@@ -146,7 +146,7 @@ public class ShortcutSkinHeadHelper {
     /** Texture download with an explicit UA + timeouts (textures.minecraft.net rejects blank agents). */
     private static void downloadTexture(@NonNull String url, @NonNull File out) throws IOException {
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
-        conn.setRequestProperty("User-Agent", "CS-Launcher-Plus");
+        conn.setRequestProperty("User-Agent", "MorphyzLauncher");
         conn.setConnectTimeout(NETWORK_TIMEOUT_MS);
         conn.setReadTimeout(NETWORK_TIMEOUT_MS);
         conn.setInstanceFollowRedirects(true);

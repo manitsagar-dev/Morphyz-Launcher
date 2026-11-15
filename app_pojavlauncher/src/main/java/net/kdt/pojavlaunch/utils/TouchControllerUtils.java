@@ -25,7 +25,7 @@ public class TouchControllerUtils {
     }
 
     public static LauncherProxyClient proxyClient;
-    private static final String socketName = "CS Launcher";
+    private static final String socketName = "Morphyz Launcher";
 
     private static class VibrationHandler implements LauncherProxyClient.VibrationHandler {
         private final Vibrator vibrator;

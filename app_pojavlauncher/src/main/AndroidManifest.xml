@@ -43,25 +43,21 @@
             android:name=".MissingStorageActivity"
             android:exported="false" />
 
-        <!-- Full-screen first-launch Java runtime installer -->
-        <!-- sensorLandscape: the launcher itself is landscape (Task 2); the
-             runtime setup page follows with its dedicated layout-land split. -->
+        <!-- Full-screen first-launch Java runtime installer.
+             sensorPortrait: the whole launcher UI is portrait (Morphyz redesign). -->
         <activity
             android:name=".multirt.RuntimeSetupActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorPortrait" />
 
         <!-- Server Hub: the launcher's own server list (built-in servers + saved ones).
-             sensorLandscape like every other launcher page, so opening it from the profile
-             editor does not rotate the world twice; it has a dedicated layout-land split, and no
-             configChanges, so a rotation picks the right layout instead of stretching the wrong
-             one. -->
+             sensorPortrait like every other launcher page (Morphyz redesign). -->
         <activity
             android:name=".servers.ServerHubActivity"
             android:exported="false"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorPortrait" />
 
         <meta-data
             android:name="android.max_aspect"
@@ -72,7 +68,7 @@
             android:exported="true"
             android:label="@string/app_short_name"
             android:launchMode="singleTop"
-            android:screenOrientation="sensorLandscape">
+            android:screenOrientation="sensorPortrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -102,7 +98,7 @@
             android:name=".LauncherActivity"
             android:label="@string/app_short_name"
             android:hardwareAccelerated="true"
-            android:screenOrientation="sensorLandscape"
+            android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustPan"/>
         <!-- adjustResize + FLAG_LAYOUT_NO_LIMITS got stuck after the IME closed:
              the window frame kept the shrunken height, so returning from
@@ -136,12 +132,12 @@
         <activity
             android:name=".CrashActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".ProfileLogActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"
             android:exported="false"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="sensorPortrait" />
 
         <activity android:name=".ShowErrorActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|keyboard|navigation"

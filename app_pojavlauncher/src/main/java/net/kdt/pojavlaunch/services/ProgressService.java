@@ -36,7 +36,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * ProgressService — the download notification center of CS Launcher.
+ * ProgressService — the download notification center of Morphyz Launcher.
  *
  * Keeps its original purpose (foreground process anchor while tasks run)
  * but now also renders one live grouped notification PER download record:

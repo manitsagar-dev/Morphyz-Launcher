@@ -1,4 +1,4 @@
-# CS Launcher V3 — Remote Loading Video
+# Morphyz Launcher V3 — Remote Loading Video
 
 This folder is the launcher's **remote media store**. Everything here is
 served over GitHub Raw at launcher start — nothing inside `remote/` is

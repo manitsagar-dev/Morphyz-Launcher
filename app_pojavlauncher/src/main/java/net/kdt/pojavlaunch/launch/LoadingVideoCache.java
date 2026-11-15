@@ -160,7 +160,7 @@ public final class LoadingVideoCache {
             conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
             conn.setReadTimeout(READ_TIMEOUT_MS);
             conn.setInstanceFollowRedirects(true);
-            conn.setRequestProperty("User-Agent", "CS-Launcher-V3");
+            conn.setRequestProperty("User-Agent", "MorphyzLauncher/3.1");
             int code = conn.getResponseCode();
             if (code < 200 || code >= 300) return;
             long declared = conn.getContentLength();
@@ -220,7 +220,7 @@ public final class LoadingVideoCache {
             conn.setConnectTimeout(HEAD_TIMEOUT_MS);
             conn.setReadTimeout(HEAD_TIMEOUT_MS);
             conn.setInstanceFollowRedirects(true);
-            conn.setRequestProperty("User-Agent", "CS-Launcher-V3");
+            conn.setRequestProperty("User-Agent", "MorphyzLauncher/3.1");
             int code = conn.getResponseCode();
             if (code < 200 || code >= 300) return null;
             return new String[]{

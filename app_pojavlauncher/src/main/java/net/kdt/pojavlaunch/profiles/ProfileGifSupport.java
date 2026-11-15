@@ -39,7 +39,7 @@ public final class ProfileGifSupport {
     private static final String TAG = "ProfileGifSupport";
 
     /**
-     * Official default animated profile background for CS Launcher Plus.
+     * Official default animated profile background for Morphyz Launcher.
      * Phase 8: bundled in the APK ({@code res/raw/cs_default_profile_bg.gif}) so it
      * plays instantly, offline, on a fresh install — no download, no blank card.
      * The value is a resource key understood by {@link #isBundledKey(String)}.
@@ -232,7 +232,7 @@ public final class ProfileGifSupport {
                 conn.setConnectTimeout(10000);
                 conn.setReadTimeout(15000);
                 conn.setInstanceFollowRedirects(true);
-                conn.setRequestProperty("User-Agent", "CSLauncherPlus/1.0");
+                conn.setRequestProperty("User-Agent", "MorphyzLauncher/1.0");
                 if (conn.getResponseCode() != HttpURLConnection.HTTP_OK) return;
                 try (InputStream in = conn.getInputStream();
                      OutputStream out = new FileOutputStream(cacheFile)) {

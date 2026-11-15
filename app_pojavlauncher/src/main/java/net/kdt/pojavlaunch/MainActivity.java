@@ -923,7 +923,7 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
         } catch (NumberFormatException e) { folder.mkdir(); }
 
         if (hasMods("sodium"))
-            Logger.appendToLog("WARNING: Sodium is being used. CS LAUNCHER PLUS supports it, but if you encounter visual glitches or crashes, report them in our community!");
+            Logger.appendToLog("WARNING: Sodium is being used. MORPHYZ LAUNCHER supports it, but if you encounter visual glitches or crashes, report them in our community!");
         Tools.printLauncherInfo(versionId, Tools.isValidString(minecraftProfile.javaArgs) ? minecraftProfile.javaArgs : LauncherPreferences.PREF_CUSTOM_JAVA_ARGS, Tools.getTotalDeviceMemory(this));
         if(Tools.LOCAL_RENDERER.equals("opengles_mobileglues")) {
             try {

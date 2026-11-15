@@ -172,7 +172,7 @@ public class MinecraftAccount {
             connection.setConnectTimeout(8000);
             connection.setReadTimeout(12000);
             connection.setInstanceFollowRedirects(true);
-            connection.setRequestProperty("User-Agent", "CS-Launcher-V3");
+            connection.setRequestProperty("User-Agent", "MorphyzLauncher/3.1");
             int code = connection.getResponseCode();
             if (code < 200 || code >= 300) return false;
             long declared = connection.getContentLength();

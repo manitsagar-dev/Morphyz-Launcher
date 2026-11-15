@@ -3,7 +3,7 @@
      LauncherActivity — LANDSCAPE, FULL-SCREEN (old top header fully removed).
 
      History: this land variant used to carry the legacy header bar
-     (logo + "CS Launcher Plus" title + nav_mod_store / nav_custom_controls /
+     (logo + "Morphyz Launcher" title + nav_mod_store / nav_custom_controls /
      nav_cursor / btn_about / nav_skin / nav_home icons + account spinner +
      settings). The Home screen now owns navigation, accounts and settings —
      the header structure is deleted, and the fragment container spans the

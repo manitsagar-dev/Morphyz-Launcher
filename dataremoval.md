@@ -1,5 +1,5 @@
-# Remove CS Launcher account data
-CS Launcher uses two types of accounts:
+# Remove Morphyz Launcher account data
+Morphyz Launcher uses two types of accounts:
 - Local accounts
 - Microsoft accounts
 <br>

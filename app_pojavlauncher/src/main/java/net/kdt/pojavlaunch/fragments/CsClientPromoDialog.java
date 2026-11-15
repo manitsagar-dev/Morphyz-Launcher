@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentActivity;
 import net.kdt.pojavlaunch.R;
 
 /**
- * CS Launcher Plus — CS Client Promo Dialog.
+ * Morphyz Launcher — CS Client Promo Dialog.
  *
  * Displays the official English promo for CS Client ("80% completed — complete 1,000 subscribers
  * on our YouTube channel to launch immediately!").

@@ -16,7 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * RemoteConfigManager — GitHub Remote Config for CS Launcher Plus.
+ * RemoteConfigManager — GitHub Remote Config for Morphyz Launcher.
  *
  * Fetches and caches remote/config.json straight from the launcher repo via
  * GitHub Raw:
@@ -164,7 +164,7 @@ public final class RemoteConfigManager {
             conn.setConnectTimeout(CONNECT_TIMEOUT_MS);
             conn.setReadTimeout(READ_TIMEOUT_MS);
             conn.setUseCaches(false);
-            conn.setRequestProperty("User-Agent", "CS-Launcher-V3");
+            conn.setRequestProperty("User-Agent", "MorphyzLauncher/3.1");
             conn.setInstanceFollowRedirects(true);
             int code = conn.getResponseCode();
             if (code < 200 || code >= 300) return null;
