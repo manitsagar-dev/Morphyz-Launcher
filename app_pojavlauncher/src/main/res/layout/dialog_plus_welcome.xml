@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- ════════════════════════════════════════════════════════════════
-     CS LAUNCHER PLUS — first-launch thank-you popup (Phase 10 rebuild).
+     MORPHYZ LAUNCHER — first-launch thank-you popup (Phase 10 rebuild).
      Shown exactly once, between the runtime installer and the Home
      tutorial. The old 400dp card crammed a 700-character paragraph
      into 13sp — unreadable. Now: a wide two-pane sheet that fills the

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- ═══════════════════════════════════════════════════════════════════════════
-     CS Launcher — LAUNCHER HOME "STAGE" v2 (fixes pass)
+     Morphyz Launcher — LAUNCHER HOME "STAGE" v2 (fixes pass)
 
      Full-bleed primary-instance artwork + layered legibility scrim.
      One intentional composition:
@@ -102,7 +102,7 @@
                     android:letterSpacing="0.06"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:text="CS LAUNCHER PLUS"
+                    android:text="MORPHYZ LAUNCHER"
                     android:textColor="#FFFFFF"
                     android:textSize="12sp"
                     android:textStyle="bold"
@@ -151,7 +151,7 @@
                 android:layout_height="30dp"
                 android:background="@drawable/bg_lh_pill_youtube"
                 android:clickable="true"
-                android:contentDescription="Open the CS Launcher YouTube channel"
+                android:contentDescription="Open the Morphyz Launcher YouTube channel"
                 android:focusable="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -184,7 +184,7 @@
                 android:layout_marginStart="6dp"
                 android:background="@drawable/bg_lh_pill_discord"
                 android:clickable="true"
-                android:contentDescription="Join the CS Launcher Discord"
+                android:contentDescription="Join the Morphyz Launcher Discord"
                 android:focusable="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"

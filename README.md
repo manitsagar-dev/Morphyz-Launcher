@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="assets/readme/logo.png" alt="CS Launcher Plus" width="140">
+<img src="assets/readme/logo.png" alt="Morphyz Launcher" width="140">
 
-# CS Launcher Plus
+# Morphyz Launcher
 
 **Minecraft: Java Edition on Android — fast, modern, and now with two engines.**
 
@@ -10,9 +10,9 @@
 
 <br>
 
-<a href="https://github.com/craftstudioteam/CS-LAUNCHER-PLUS/releases/latest"><img src="https://img.shields.io/github/v/release/craftstudioteam/CS-LAUNCHER-PLUS?style=for-the-badge&label=Latest&color=C6C6CE" alt="Latest release"></a>
+<a href="https://github.com/manitsagar-dev/Morphyz-Launcher/releases/latest"><img src="https://img.shields.io/github/v/release/manitsagar-dev/Morphyz-Launcher?style=for-the-badge&label=Latest&color=C6C6CE" alt="Latest release"></a>
 &nbsp;
-<a href="https://github.com/craftstudioteam/CS-LAUNCHER-PLUS/releases"><img src="https://img.shields.io/github/downloads/craftstudioteam/CS-LAUNCHER-PLUS/total?style=for-the-badge&color=2ea043" alt="Downloads"></a>
+<a href="https://github.com/manitsagar-dev/Morphyz-Launcher/releases"><img src="https://img.shields.io/github/downloads/manitsagar-dev/Morphyz-Launcher/total?style=for-the-badge&color=2ea043" alt="Downloads"></a>
 &nbsp;
 <img src="https://img.shields.io/badge/Android-5.0%2B-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Android 5.0+">
 &nbsp;
@@ -20,7 +20,7 @@
 
 <br><br>
 
-<a href="https://github.com/craftstudioteam/CS-LAUNCHER-PLUS/releases/latest"><img src="https://img.shields.io/badge/Download%20APK-Latest%20Release-1f6feb?style=for-the-badge&logo=github&logoColor=white" alt="Download APK"></a>
+<a href="https://github.com/manitsagar-dev/Morphyz-Launcher/releases/latest"><img src="https://img.shields.io/badge/Download%20APK-Latest%20Release-1f6feb?style=for-the-badge&logo=github&logoColor=white" alt="Download APK"></a>
 &nbsp;
 <a href="https://discord.gg/dmteYqZZyY"><img src="https://img.shields.io/badge/Discord-Join%20the%20community-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
 &nbsp;
@@ -30,22 +30,22 @@
 
 <br><br>
 
-<img src="assets/readme/screenshots/home.png" alt="CS Launcher Plus — home" width="100%">
+<img src="assets/readme/screenshots/home.png" alt="Morphyz Launcher — home" width="100%">
 
 </div>
 
 ---
 
-## What is CS Launcher Plus?
+## What is Morphyz Launcher?
 
-CS Launcher Plus lets you play **Minecraft: Java Edition** on your Android phone or tablet — every
+Morphyz Launcher lets you play **Minecraft: Java Edition** on your Android phone or tablet — every
 version from the earliest alphas to the newest **26.x** snapshots, with Forge, Fabric, NeoForge, Quilt,
 OptiFine, shaders, resource packs and modpacks from Modrinth and CurseForge.
 
 Version **1.6** is the biggest update so far: a second game engine written in Rust, a built-in friends
 system, one-tap multiplayer hosting and voice chat — all inside the launcher you already know.
 
-> You need your own Minecraft: Java Edition account to play online. CS Launcher Plus is not affiliated
+> You need your own Minecraft: Java Edition account to play online. Morphyz Launcher is not affiliated
 > with Mojang Studios or Microsoft and ships none of their code or assets.
 
 ---
@@ -131,8 +131,8 @@ A friends system that lives in the launcher **and** in the game.
 
 ## Install
 
-1. Download `CS-Launcher-Plus-release.apk` from the
-   [latest release](https://github.com/craftstudioteam/CS-LAUNCHER-PLUS/releases/latest).
+1. Download `MorphyzLauncher-release.apk` from the
+   [latest release](https://github.com/manitsagar-dev/Morphyz-Launcher/releases/latest).
 2. Allow installs from your browser / file manager if Android asks.
 3. Open the launcher, accept the terms, add an account (local is fine) and press **PLAY**.
 
@@ -168,7 +168,8 @@ A friends system that lives in the launcher **and** in the game.
 
 ## License and credits
 
-CS Launcher Plus is free software under the **GNU LGPL v3**, a fork of the
+Morphyz Launcher is a fork and rebrand of **CS Launcher Plus** by Craft Studio Development Group.
+It is free software under the **GNU LGPL v3**, a fork of the
 [PojavLauncher](https://github.com/PojavLauncherTeam/PojavLauncher) family
 ([Amethyst](https://github.com/AngelAuraMC/Amethyst-Android)).
 **CS Rust Edition** is **MIT** licensed, derived from [Horizon](https://github.com/horizon-rust/horizon)
@@ -181,7 +182,7 @@ notices**, and in `NOTICE` / `assets/licenses` in this repository. Highlights: O
 LWJGL (BSD-3), GLFW / SDL3 (zlib), Holy GL4ES, Mesa/Zink (MIT), LTW (LGPL-3), MobileGlues / CSGE (LGPL-2.1),
 wgpu, winit, e4mc (MIT/Apache-2.0), authlib-injector (AGPL-3, separate program).
 
-Minecraft is a trademark of Mojang Synergies AB / Microsoft. "Craft Studio", "CS Launcher Plus",
+Minecraft is a trademark of Mojang Synergies AB / Microsoft. "Craft Studio", "Morphyz Launcher",
 "CS Engine" and "CS Rust Edition" are Craft Studio's. Privacy policy: in the app (About › Privacy
 policy) and in `PRIVACY_POLICY_en` / `PRIVACY_POLICY_hi`.
 

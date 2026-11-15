@@ -117,7 +117,7 @@ import java.util.Map;
 public final class Tools {
     public  static final float BYTE_TO_MB = 1024 * 1024;
     public static final Handler MAIN_HANDLER = new Handler(Looper.getMainLooper());
-    public static String APP_NAME = "CS LAUNCHER PLUS";
+    public static String APP_NAME = "MORPHYZ LAUNCHER";
 
     public static final Gson GLOBAL_GSON = new GsonBuilder().setPrettyPrinting().create();
 
@@ -971,7 +971,7 @@ public final class Tools {
     public static String generateLaunchClasspath(JMinecraftVersionList.Version info, String actualname) {
         StringBuilder launchClasspath = new StringBuilder(); //versnDir + "/" + version + "/" + version + ".jar:";
         String libClasspath = getLibClasspath(info); // Sets lwjglVersion, janky, but we can't get it any simpler
-        // Match the CS Launcher packaged bridge selection: 3.4.1 is the newest
+        // Match the Morphyz Launcher packaged bridge selection: 3.4.1 is the newest
         // bundled component and serves current modern snapshots.
         String internalLwjglVersion = iLwjglVersion >= 341 ? "3.4.1" : "3.3.3";
         File lwjgl3Folder = new File(Tools.DIR_GAME_HOME, "lwjgl3/"+internalLwjglVersion);
@@ -1981,7 +1981,7 @@ public final class Tools {
             new net.kdt.pojavlaunch.ui.CsConfirmDialog(ctx)
                     .kicker("QUIT GAME")
                     .title("Leave this session?")
-                    .message("Minecraft closes immediately — unsaved world progress since the last autosave is lost. You will land back in CS Launcher Plus.")
+                    .message("Minecraft closes immediately — unsaved world progress since the last autosave is lost. You will land back in Morphyz Launcher.")
                     .detail("force close  \u00b7  back to launcher")
                     .danger("QUIT TO LAUNCHER", () -> quitToLauncher(ctx))
                     .show();

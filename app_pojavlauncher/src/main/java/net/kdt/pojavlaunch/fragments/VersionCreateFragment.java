@@ -1418,7 +1418,7 @@ public class VersionCreateFragment extends Fragment implements CropperUtils.Crop
         Tools.showErrorRemote(exception);
     }
 
-    /** The user's cropped icon, else the CS Launcher logo (null only if encoding failed). */
+    /** The user's cropped icon, else the Morphyz Launcher logo (null only if encoding failed). */
     @Nullable
     private String effectiveIcon() {
         if (mEncodedIcon != null) return mEncodedIcon;

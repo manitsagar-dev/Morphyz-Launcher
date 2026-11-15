@@ -9,7 +9,7 @@ import android.util.Log;
 import net.kdt.pojavlaunch.R;
 
 /**
- * CS Launcher sound system.
+ * Morphyz Launcher sound system.
  *
  * <p>One shared {@link SoundPool} for short UI sounds (welcome chime, future
  * interaction cues). Sounds live in {@code res/raw/}; the welcome popup calls
@@ -32,7 +32,7 @@ public final class CsSoundPlayer {
 
     private CsSoundPlayer() { /* no instances */ }
 
-    /** Play the CS Launcher Plus welcome chime, if the sound file is bundled. */
+    /** Play the Morphyz Launcher welcome chime, if the sound file is bundled. */
     public static void playWelcome(Context ctx) {
         try {
             int id = welcomeId(ctx);

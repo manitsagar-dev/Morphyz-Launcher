@@ -574,7 +574,7 @@ public class LauncherPreferenceFragment extends Fragment {
             case "Miscellaneous":
                 return "Verification, capes, and extra compatibility switches that support special cases.";
             case "Sponsors":
-                return "Official partners who keep CS LAUNCHER PLUS fast, free, and professionally backed.";
+                return "Official partners who keep MORPHYZ LAUNCHER fast, free, and professionally backed.";
             case "Performance":
                 return "Live FPS, memory telemetry and low-pause runtime tuning for steadier gameplay.";
             default:
@@ -687,7 +687,7 @@ public class LauncherPreferenceFragment extends Fragment {
                 items.add(new SettingItem("perf_presets_general", SettingItem.TYPE_PRESET_PANEL,
                         "Quick Device Optimizer", "1-Click auto-tuning for your device", null));
                 items.add(new SettingItem("check_for_update_btn", SettingItem.TYPE_ACTION,
-                        "Check for updates", "See if a newer CS Launcher Plus is available", null)
+                        "Check for updates", "See if a newer Morphyz Launcher is available", null)
                         .setAction(() -> net.kdt.pojavlaunch.remote.FirebaseSyncManager.checkForUpdateManual(requireActivity())));
                 items.add(new SettingItem("launcher_animations", SettingItem.TYPE_DROPDOWN,
                         "Animations", "Turn launcher animations on or off", "full")
@@ -874,7 +874,7 @@ public class LauncherPreferenceFragment extends Fragment {
                     launcherItems.add(new SettingItem("perf_presets_launcher", SettingItem.TYPE_PRESET_PANEL, "Performance Presets", "", null));
                     launcherItems.add(new SettingItem("check_for_update_btn", SettingItem.TYPE_ACTION,
                             "Check for Update",
-                            "Check online for the latest CS LAUNCHER PLUS release",
+                            "Check online for the latest MORPHYZ LAUNCHER release",
                             null).setAction(() -> {
                         net.kdt.pojavlaunch.remote.FirebaseSyncManager.checkForUpdateManual(requireActivity());
                     }));
@@ -1018,7 +1018,7 @@ public class LauncherPreferenceFragment extends Fragment {
                     List<SettingItem> advItems = new ArrayList<>();
                     advItems.add(new SettingItem("check_for_update_adv_btn", SettingItem.TYPE_ACTION,
                             "Check for Update",
-                            "Check online for the latest CS LAUNCHER PLUS release",
+                            "Check online for the latest MORPHYZ LAUNCHER release",
                             null).setAction(() -> {
                         net.kdt.pojavlaunch.remote.FirebaseSyncManager.checkForUpdateManual(requireActivity());
                     }));
@@ -1095,10 +1095,10 @@ public class LauncherPreferenceFragment extends Fragment {
                     }
                     sponsorItems.add(new SettingItem("infrawire_partner_info", SettingItem.TYPE_INFO,
                             "Infrawire — Official Hosting Partner",
-                            "High-Performance VPS & Cloud Hosting • Official Cloud Hosting Partner of CS LAUNCHER PLUS", null));
+                            "High-Performance VPS & Cloud Hosting • Official Cloud Hosting Partner of MORPHYZ LAUNCHER", null));
                     sponsorItems.add(new SettingItem("infrawire_about_info", SettingItem.TYPE_INFO,
                             "Official Sponsor",
-                            "Infrawire powers CS LAUNCHER PLUS with latest-generation VPS & cloud infrastructure — NVMe SSD storage, DDR4 memory, a 10 Gbps independent global network, multi-layer Anti-DDoS protection, hourly billing from €0.007/hour and 24/7 expert support.", null));
+                            "Infrawire powers MORPHYZ LAUNCHER with latest-generation VPS & cloud infrastructure — NVMe SSD storage, DDR4 memory, a 10 Gbps independent global network, multi-layer Anti-DDoS protection, hourly billing from €0.007/hour and 24/7 expert support.", null));
                     sponsorItems.add(new SettingItem("infrawire_view_partner_page", SettingItem.TYPE_ACTION,
                             "View Partner Page", "Plans, benefits, and promotions — inside the launcher", null)
                             .setAction(() -> Tools.swapFragment(requireActivity(),
@@ -1932,7 +1932,7 @@ public class LauncherPreferenceFragment extends Fragment {
                         }
                     });
 
-                    // O9 (CS Launcher interaction): tapping the value chip (e.g.
+                    // O9 (Morphyz Launcher interaction): tapping the value chip (e.g.
                     // "4096 MB") opens a dialog to type an exact number, clamped
                     // to the slider's min/max — no more dragging through steps.
                     tvVal.setClickable(true);

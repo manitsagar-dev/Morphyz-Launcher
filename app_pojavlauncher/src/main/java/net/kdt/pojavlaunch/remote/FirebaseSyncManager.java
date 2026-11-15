@@ -43,7 +43,7 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * CS Launcher Plus — Firebase real-time sync (admin panel driven).
+ * Morphyz Launcher — Firebase real-time sync (admin panel driven).
  *
  * Uses the official Firebase SDK (google-services.json):
  *   • announcements  → /announcements/{id}   (popup / card / page, markdown)
@@ -361,14 +361,14 @@ public final class FirebaseSyncManager {
             try {
                 File dir = act.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS);
                 if (dir == null || !dir.exists()) dir = act.getCacheDir();
-                apkFile = new File(dir, "CS_LAUNCHER_PLUS_" + version + ".apk");
+                apkFile = new File(dir, "MORPHYZ_LAUNCHER_" + version + ".apk");
                 if (apkFile.exists()) apkFile.delete();
 
                 URL url = new URL(urlStr);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setConnectTimeout(15000);
                 conn.setReadTimeout(30000);
-                conn.setRequestProperty("User-Agent", "CSLauncher-Updater/" + version);
+                conn.setRequestProperty("User-Agent", "MorphyzLauncher-Updater/" + version);
                 conn.connect();
 
                 int responseCode = conn.getResponseCode();
@@ -655,7 +655,7 @@ public final class FirebaseSyncManager {
         if (hasUpdate()) {
             checkForUpdate(act);
         } else {
-            CsPopup.show(act, "✅ CS LAUNCHER PLUS is up to date!");
+            CsPopup.show(act, "✅ MORPHYZ LAUNCHER is up to date!");
         }
     }
 }

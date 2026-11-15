@@ -23,7 +23,7 @@ public class MinecraftProfile {
 	/**
 	 * Profile background banner image (separate from the profile icon).
 	 * May be a data URI (PNG/WEBP/GIF) or an http(s) URL. New profiles default
-	 * to the official animated CS Launcher GIF — it animates on the home cards.
+	 * to the official animated Morphyz Launcher GIF — it animates on the home cards.
 	 */
 	public String background = net.kdt.pojavlaunch.profiles.ProfileGifSupport.DEFAULT_PROFILE_BG_URL;
 	public String lastVersionId;

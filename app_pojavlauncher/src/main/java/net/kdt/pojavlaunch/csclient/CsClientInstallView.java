@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import net.kdt.pojavlaunch.R;
 
 /**
- * CS Launcher Plus — Futuristic Cyber Reactor Client Installation & Download Visualizer.
+ * Morphyz Launcher — Futuristic Cyber Reactor Client Installation & Download Visualizer.
  * Features rotating holographic gyroscope rings, orbital particle trackers, live telemetry HUD,
  * and multi-stage atomic progress rail.
  */

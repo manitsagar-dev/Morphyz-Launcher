@@ -21,7 +21,7 @@ import net.kdt.pojavlaunch.R;
 import java.util.Map;
 
 /**
- * CS Launcher Plus — Firebase Cloud Messaging (FCM) push notifications service.
+ * Morphyz Launcher — Firebase Cloud Messaging (FCM) push notifications service.
  *
  * Handles registration token acquisition, automatic topic subscriptions
  * ("launcher_updates", "launcher_announcements", "server_news", "maintenance"),
@@ -31,7 +31,7 @@ import java.util.Map;
  */
 public class CsFirebaseMessagingService extends FirebaseMessagingService {
 
-    private static final String TAG = "FCM_CSLauncher";
+    private static final String TAG = "FCM_MorphyzLauncher";
 
     public static final String CHANNEL_UPDATES_ID = "cs_launcher_updates";
     public static final String CHANNEL_ANNOUNCEMENTS_ID = "cs_launcher_announcements";
@@ -56,7 +56,7 @@ public class CsFirebaseMessagingService extends FirebaseMessagingService {
                     "Launcher Updates",
                     NotificationManager.IMPORTANCE_HIGH
             );
-            updatesChannel.setDescription("Notifications for CS LAUNCHER PLUS application updates");
+            updatesChannel.setDescription("Notifications for MORPHYZ LAUNCHER application updates");
 
             NotificationChannel announcementsChannel = new NotificationChannel(
                     CHANNEL_ANNOUNCEMENTS_ID,
@@ -219,7 +219,7 @@ public class CsFirebaseMessagingService extends FirebaseMessagingService {
             message = notif.getBody();
         }
         if (title == null || title.trim().isEmpty()) {
-            title = "CS LAUNCHER PLUS";
+            title = "MORPHYZ LAUNCHER";
         }
         if (message == null) {
             message = "";

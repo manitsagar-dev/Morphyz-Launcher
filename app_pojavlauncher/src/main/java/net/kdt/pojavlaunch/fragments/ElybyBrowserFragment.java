@@ -16,7 +16,7 @@ import net.kdt.pojavlaunch.R;
 import net.kdt.pojavlaunch.Tools;
 
 /**
- * CS Launcher Plus — In-Launcher WebView Browser for Ely.by.
+ * Morphyz Launcher — In-Launcher WebView Browser for Ely.by.
  * Provides the same seamless browser experience as Microsoft / Mojang OAuth login,
  * allowing users to register an Ely.by account, verify email, or manage skins directly
  * inside the launcher.
