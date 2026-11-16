@@ -45,7 +45,7 @@ public class LoggerView extends ConstraintLayout {
     private View mLiveDot;
     private View mCliOverlay;
     private TextView mCliCommand;
-    private CsBlockLogoView mCliAscii;
+    private MorphyzMarkView mCliAscii;
     private TextView mCliBrand;
     private TextView mCliStatus;
     private TextView mCliProgressText;
@@ -403,13 +403,13 @@ public class LoggerView extends ConstraintLayout {
         // ── Phase 8 BOOT SEQUENCE ──────────────────────────────────────────
         // A real timeline instead of a fixed-rate bar:
         //   0    overlay fades in, titlebar dots pop one by one
-        //   180  prompt types "cs boot --profile" with a blinking block cursor
+        //   180  prompt types "morphyz boot --profile" with a blinking block cursor
         //   ~900 pixel logo reveals, brand tracks in from wide letter-spacing
         //   then three checklist steps complete in sequence — each flips its
         //        spinner into a "[ ok ]" tick with a pop — while the bar eases
         //        (outExpo) towards the step's milestone
         //   end  "ready" pulse, then the overlay lifts and the live log lands
-        final String command = "cs boot --profile --renderer auto";
+        final String command = "morphyz boot --profile --renderer auto";
         final String[] spinner = {"\u280b", "\u2819", "\u2839", "\u2838", "\u283c", "\u2834", "\u2826", "\u2827", "\u2807", "\u280f"};
         final String[] steps = {"runtime", "renderer", "mod loader"};
         final int[] milestones = {30, 64, 96};

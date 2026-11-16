@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.RadialGradient;
-import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.DashPathEffect;
 import android.os.SystemClock;
@@ -21,39 +20,34 @@ import android.view.animation.LinearInterpolator;
 import androidx.annotation.Nullable;
 
 /**
- * The "CS" mark of the animated launch console.
+ * The Morphyz "M" mark of the animated launch console.
  *
- * <p>The letters are real vector geometry — a swept arc for the C and a double-arc spine for the
- * S — stroked with rounded caps. Nothing here depends on a font, which is what broke the previous
- * ASCII-art version: its box-drawing characters were missing from Android's monospace font, fell
- * back to a proportional one and sheared the logo apart.
+ * <p>The mark is real vector geometry — one continuous stroke that sweeps up the left stem,
+ * dips through the middle vertex and back down the right stem — stroked with rounded caps.
+ * Nothing here depends on a font, so it renders identically on every device.
  *
  * <p>Animation timeline, replayed by {@link #startReveal()}:
  * <ol>
- *   <li><b>Draw-on</b> — each letter is stroked into existence along its own path, C first, S a
- *       beat later, with a bright tip travelling ahead of the ink.</li>
- *   <li><b>Bloom</b> — when a letter lands it flashes a soft halo that settles into a steady glow.</li>
+ *   <li><b>Draw-on</b> — the mark is stroked into existence along its path with a bright tip
+ *       travelling ahead of the ink.</li>
+ *   <li><b>Bloom</b> — when the stroke lands it flashes a soft halo that settles into a steady glow.</li>
  *   <li><b>Idle</b> — a diagonal light band keeps sweeping across the mark, the glow breathes, and
  *       the whole logo floats by a hair, so the console never looks frozen while the game loads.</li>
  * </ol>
  */
-public final class CsBlockLogoView extends View {
+public final class MorphyzMarkView extends View {
 
     /** Canonical design space; everything is authored here and scaled to the view. */
     private static final float DESIGN_W = 260f;
     private static final float DESIGN_H = 120f;
     private static final float STROKE = 15f;
 
-    private static final long DRAW_C_MS = 620L;
-    private static final long DRAW_S_MS = 700L;
-    private static final long S_DELAY_MS = 240L;
+    private static final long DRAW_M_MS = 880L;
     private static final long BLOOM_MS = 420L;
     private static final long IDLE_PERIOD_MS = 3200L;
 
-    private final Path mPathC = new Path();
-    private final Path mPathS = new Path();
-    private final Path mScaledC = new Path();
-    private final Path mScaledS = new Path();
+    private final Path mPathM = new Path();
+    private final Path mScaledM = new Path();
 
     private final Paint mInkPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint mGlowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -70,7 +64,7 @@ public final class CsBlockLogoView extends View {
     private LinearGradient mShineGradient;
     private RadialGradient mHaloGradient;
 
-    private float mLenC, mLenS;
+    private float mLenM;
     private float mScale = 1f, mOffsetX, mOffsetY;
 
     private ValueAnimator mAnimator;
@@ -78,9 +72,9 @@ public final class CsBlockLogoView extends View {
     private float mIdlePhase;
     private boolean mInstant;
 
-    public CsBlockLogoView(Context context) { this(context, null); }
-    public CsBlockLogoView(Context context, @Nullable AttributeSet attrs) { this(context, attrs, 0); }
-    public CsBlockLogoView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public MorphyzMarkView(Context context) { this(context, null); }
+    public MorphyzMarkView(Context context, @Nullable AttributeSet attrs) { this(context, attrs, 0); }
+    public MorphyzMarkView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         buildLetters();
 
@@ -108,28 +102,19 @@ public final class CsBlockLogoView extends View {
     // ───────────────────────── geometry ─────────────────────────
 
     private void buildLetters() {
-        // Geometry verified by rendering it out before it ever reached a device.
-        // C — one open ring, terminals at the upper and lower right.
-        RectF cRect = new RectF(14f, 12f, 116f, 108f);
-        mPathC.reset();
-        mPathC.addArc(cRect, -48f, -264f);
+        // One continuous contour: up the left stem, dip through the middle vertex,
+        // back down the right stem. Terminals carry rounded caps, the two top peaks
+        // and the middle vertex keep a rounded join — one clean draw-on from first
+        // to last terminal.
+        mPathM.reset();
+        mPathM.moveTo(30f, 100f);
+        mPathM.lineTo(30f, 20f);
+        mPathM.lineTo(130f, 66f);
+        mPathM.lineTo(230f, 20f);
+        mPathM.lineTo(230f, 100f);
 
-        // S — two TANGENT bowls (the top one's bottom edge is the bottom one's top edge), so the
-        // waist is a single shared point and the curve flows without a step. arcTo (not addArc)
-        // keeps it in ONE contour, which is what lets the dash-based draw-on run cleanly from the
-        // first terminal to the last.
-        RectF sTop = new RectF(152f, 6f, 244f, 60f);
-        RectF sBottom = new RectF(152f, 60f, 244f, 114f);
-        mPathS.reset();
-        mPathS.arcTo(sTop, -20f, -250f, true);    // upper bowl: right terminal, over the top, into the waist
-        mPathS.arcTo(sBottom, 270f, 250f, false); // lower bowl: waist, around the right and bottom, to the left terminal
-
-        mMeasure.setPath(mPathC, false);
-        mLenC = mMeasure.getLength();
-        mMeasure.setPath(mPathS, false);
-        float total = mMeasure.getLength();
-        while (mMeasure.nextContour()) total += mMeasure.getLength();
-        mLenS = total;
+        mMeasure.setPath(mPathM, false);
+        mLenM = mMeasure.getLength();
     }
 
     // ───────────────────────── public API ─────────────────────────
@@ -195,8 +180,7 @@ public final class CsBlockLogoView extends View {
         mScaleMatrix.reset();
         mScaleMatrix.setScale(mScale, mScale);
         mScaleMatrix.postTranslate(mOffsetX, mOffsetY);
-        mPathC.transform(mScaleMatrix, mScaledC);
-        mPathS.transform(mScaleMatrix, mScaledS);
+        mPathM.transform(mScaleMatrix, mScaledM);
 
         float stroke = STROKE * mScale;
         mInkPaint.setStrokeWidth(stroke);
@@ -230,14 +214,11 @@ public final class CsBlockLogoView extends View {
                 ? Long.MAX_VALUE / 4
                 : SystemClock.uptimeMillis() - mRevealStartedAt;
 
-        float pC = clamp01(elapsed / (float) DRAW_C_MS);
-        float pS = clamp01((elapsed - S_DELAY_MS) / (float) DRAW_S_MS);
-        pC = easeOut(pC);
-        pS = easeOut(pS);
+        float pM = clamp01(elapsed / (float) DRAW_M_MS);
+        pM = easeOut(pM);
 
-        float bloomC = clamp01((elapsed - DRAW_C_MS) / (float) BLOOM_MS);
-        float bloomS = clamp01((elapsed - S_DELAY_MS - DRAW_S_MS) / (float) BLOOM_MS);
-        boolean settled = pC >= 1f && pS >= 1f;
+        float bloomM = clamp01((elapsed - DRAW_M_MS) / (float) BLOOM_MS);
+        boolean settled = pM >= 1f;
 
         // Gentle breathing + float once the mark has landed.
         float breath = (float) Math.sin(mIdlePhase * Math.PI * 2f) * 0.5f + 0.5f;
@@ -252,8 +233,7 @@ public final class CsBlockLogoView extends View {
             canvas.drawRect(0, 0, getWidth(), getHeight(), mHaloPaint);
         }
 
-        drawLetter(canvas, mScaledC, mLenC * mScale, pC, bloomC, breath, settled);
-        drawLetter(canvas, mScaledS, mLenS * mScale, pS, bloomS, breath, settled);
+        drawLetter(canvas, mScaledM, mLenM * mScale, pM, bloomM, breath, settled);
 
         if (settled) drawShine(canvas);
 
@@ -271,7 +251,7 @@ public final class CsBlockLogoView extends View {
             effect = new DashPathEffect(new float[]{length, length}, length * (1f - progress));
         }
 
-        // Glow underlay: strong while the letter lands, then a calm breathing halo.
+        // Glow underlay: strong while the stroke lands, then a calm breathing halo.
         float glowAlpha = settled ? 26f + 22f * breath : 30f + 70f * bloom;
         mGlowPaint.setPathEffect(effect);
         mGlowPaint.setAlpha((int) Math.min(255f, glowAlpha));
@@ -281,7 +261,7 @@ public final class CsBlockLogoView extends View {
         mInkPaint.setAlpha(255);
         canvas.drawPath(path, mInkPaint);
 
-        // Bright tip riding ahead of the ink while the letter is being drawn.
+        // Bright tip riding ahead of the ink while the mark is being drawn.
         if (partial) {
             mMeasure.setPath(path, false);
             float walked = 0f;
@@ -303,7 +283,7 @@ public final class CsBlockLogoView extends View {
         }
     }
 
-    /** Diagonal light band travelling across both letters. */
+    /** Diagonal light band travelling across the mark. */
     private void drawShine(Canvas canvas) {
         if (mShineGradient == null) return;
         float w = getWidth();
@@ -315,8 +295,7 @@ public final class CsBlockLogoView extends View {
 
         mShinePaint.setPathEffect(null);
         mShinePaint.setAlpha(150);
-        canvas.drawPath(mScaledC, mShinePaint);
-        canvas.drawPath(mScaledS, mShinePaint);
+        canvas.drawPath(mScaledM, mShinePaint);
     }
 
     private static float clamp01(float v) { return v < 0f ? 0f : Math.min(v, 1f); }

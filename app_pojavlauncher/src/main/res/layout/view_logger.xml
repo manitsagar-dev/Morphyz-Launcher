@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- ═══════════════════════════════════════════════════════════════════════
-     CS GAME LOG — TERMINAL v3 (Phase 8, Graphite)
+     MORPHYZ GAME LOG — TERMINAL v3 (Phase 8, Graphite)
 
      Structure changed from a stacked toolbar card to a RAIL + BODY console:
 
@@ -352,7 +352,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="monospace"
                                 android:gravity="center"
-                                android:text="cs@launcher: ~/minecraft"
+                                android:text="morphyz@launcher: ~/minecraft"
                                 android:textColor="#6C707C"
                                 android:textSize="8.5sp"
                                 tools:ignore="HardcodedText" />
@@ -377,7 +377,7 @@
                             android:textColor="#D7D8DE"
                             android:textSize="10sp" />
 
-                        <com.kdt.CsBlockLogoView
+                        <com.kdt.MorphyzMarkView
                             android:id="@+id/log_cli_ascii"
                             android:layout_width="match_parent"
                             android:layout_height="76dp"
