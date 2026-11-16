@@ -143,13 +143,13 @@ public class MinecraftGLSurface extends View implements GrabListener, DirectGame
         try {
             System.loadLibrary("SDL3");
         } catch (UnsatisfiedLinkError error) {
-            Log.w(TAG, "libSDL3.so is not packaged in this build", error);
+            Log.w("MinecraftGLSurface", "libSDL3.so is not packaged in this build", error);
         }
         try {
             org.libsdl.app.SDL.setupJNI();
-            Log.i(TAG, "MORPHYZ LAUNCHER: SDL pre-setup complete");
+            Log.i("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL pre-setup complete");
         } catch (Throwable t) {
-            Log.w(TAG, "MORPHYZ LAUNCHER: SDL pre-setup failed (will retry from SDL_Init hook)", t);
+            Log.w("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL pre-setup failed (will retry from SDL_Init hook)", t);
         }
     }
 
