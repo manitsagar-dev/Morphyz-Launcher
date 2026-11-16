@@ -115,6 +115,8 @@ public class AsyncAssetManager {
             File versionFile = new File(Tools.DIR_GAME_HOME + String.format("/lwjgl3/%s/version", lwjglVer));
             String pathToLwjglNatives = String.format("lwjgl-%s-natives/", lwjglVer) + sArch;
 
+            File nativesTargetDir = new File(rootDir, pathToLwjglNatives);
+
             boolean shouldUpdate = true;
             try (InputStream is = am.open("components/lwjgl3/" + lwjglVer + "/version")) {
                 if (versionFile.exists()) {
@@ -130,11 +132,23 @@ public class AsyncAssetManager {
             // Validate that the target natives directory actually contains the expected .so files.
             // Without this check, a stale/corrupt folder from a previous run would be silently used.
             if (!shouldUpdate) {
-                File nativesTargetDir = new File(rootDir, pathToLwjglNatives);
                 File sentinelFile = new File(nativesTargetDir, "liblwjgl.so");
                 if (!nativesTargetDir.isDirectory() || !sentinelFile.exists() || sentinelFile.length() == 0) {
                     Log.w("UnpackLwjgl", lwjglVer + " natives directory is missing or corrupt, forcing re-extraction...");
                     shouldUpdate = true;
+                }
+            }
+
+            // LWJGL searches this directory first (org.lwjgl.librarypath). A stray SDL copy
+            // left by an older install would be loaded as a SECOND libSDL3.so instance whose
+            // main-ready flag is never set, crashing MC 26.x with "Unable to initialize SDL".
+            // SDL belongs to the APK's jni/ folder only - never here.
+            for (String strayName : new String[]{"libSDL3.so", "libSDL2.so"}) {
+                File stray = new File(nativesTargetDir, strayName);
+                if (stray.exists()) {
+                    Log.w("UnpackLwjgl", "Removing stray " + strayName + " from " + nativesTargetDir);
+                    //noinspection ResultOfMethodCallIgnored
+                    stray.delete();
                 }
             }
 
