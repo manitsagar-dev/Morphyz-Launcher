@@ -40,6 +40,7 @@ import net.kdt.pojavlaunch.customcontrols.mouse.AndroidPointerCapture;
 import net.kdt.pojavlaunch.customcontrols.mouse.InGUIEventProcessor;
 import net.kdt.pojavlaunch.customcontrols.mouse.InGameEventProcessor;
 import net.kdt.pojavlaunch.customcontrols.mouse.TouchEventProcessor;
+import net.kdt.pojavlaunch.Logger;
 import net.kdt.pojavlaunch.prefs.LauncherPreferences;
 import net.kdt.pojavlaunch.utils.JREUtils;
 import net.kdt.pojavlaunch.utils.MCOptionUtils;
@@ -129,27 +130,41 @@ public class MinecraftGLSurface extends View implements GrabListener, DirectGame
     }
     protected static View.OnGenericMotionListener motionListener = (v, event) -> false;
     private static void setupSDL(Context ctx, Surface nativeSurface, ViewGroup layout){
-        SDLSurface surface = new SDLSurface(ctx);
-        motionListener = SDLActivity.getMotionListener();
-        // Sets up the Java side, must be done here or else it might run on a non-looper thread
-        // which crashes the SDLCommandHandler
-        org.libsdl.app.SDL.initialize();
-        SDL.setContext((MainActivity) ctx);
-        SDLActivity.externalInitialize(surface, layout, nativeSurface);
+        // Every stage is isolated: a failure here must never propagate out of start()
+        // (that killed the whole launcher process), and every outcome is written to the
+        // in-game log so a crash report shows exactly which stage failed.
+        try {
+            SDLSurface surface = new SDLSurface(ctx);
+            motionListener = SDLActivity.getMotionListener();
+            // Sets up the Java side, must be done here or else it might run on a non-looper thread
+            // which crashes the SDLCommandHandler
+            org.libsdl.app.SDL.initialize();
+            SDL.setContext((MainActivity) ctx);
+            SDLActivity.externalInitialize(surface, layout, nativeSurface);
+            Logger.appendToLog("MORPHYZ LAUNCHER: SDL Java-side init OK");
+        } catch (Throwable t) {
+            Log.w("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL Java-side init failed", t);
+            Logger.appendToLog("MORPHYZ LAUNCHER: SDL Java-side init failed: " + t);
+        }
         // MC 26.x loads libSDL3.so through LWJGL's SDL bindings (raw dlopen), which never
         // runs the JVM's JNI_OnLoad. Register SDL's Java natives and flip SDL's main-ready
         // flag ourselves, early enough that the game's SDL_Init can't race ahead of us.
         // (The SDL_InitSubSystem bytehook remains as a fallback via CallbackBridge.)
         try {
             System.loadLibrary("SDL3");
+            Log.i("MinecraftGLSurface", "MORPHYZ LAUNCHER: libSDL3.so loaded");
+            Logger.appendToLog("MORPHYZ LAUNCHER: libSDL3.so loaded OK");
         } catch (UnsatisfiedLinkError error) {
-            Log.w("MinecraftGLSurface", "libSDL3.so is not packaged in this build", error);
+            Log.w("MinecraftGLSurface", "libSDL3.so failed to load", error);
+            Logger.appendToLog("MORPHYZ LAUNCHER: libSDL3.so load FAILED: " + error);
         }
         try {
             org.libsdl.app.SDL.setupJNI();
             Log.i("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL pre-setup complete");
+            Logger.appendToLog("MORPHYZ LAUNCHER: SDL pre-setup complete (main-ready set)");
         } catch (Throwable t) {
             Log.w("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL pre-setup failed (will retry from SDL_Init hook)", t);
+            Logger.appendToLog("MORPHYZ LAUNCHER: SDL pre-setup failed: " + t);
         }
     }
 

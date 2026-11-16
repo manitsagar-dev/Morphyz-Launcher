@@ -131,6 +131,37 @@ static JNI_OnLoad_t get_jni_onload_wrapper(
     return NULL;
 }
 
+// MC 26.x resolves SDL_Init/SDL_InitSubSystem through LWJGL's apiGetFunctionAddress
+// (a raw dlsym'd function pointer), which completely bypasses the SDL_InitSubSystem
+// PLT bytehook. Return a trampoline instead, guaranteeing SDL_SetMainReady() ran
+// before the real init - otherwise SDL refuses to start with
+// "Application didn't initialize properly, did you include SDL_main.h...".
+typedef bool (*sdl_init_func_t)(uint32_t);
+static void *g_sdl3_handle = NULL;
+static sdl_init_func_t g_real_sdl_init = NULL;
+static sdl_init_func_t g_real_sdl_init_subsystem = NULL;
+
+static void force_main_ready(void *handle) {
+    if (handle == NULL) {
+        return;
+    }
+    void (*SDL_SetMainReady_p)(void) = (void (*)(void))dlsym(handle, "SDL_SetMainReady");
+    if (SDL_SetMainReady_p != NULL) {
+        SDL_SetMainReady_p();
+        LOGI("Morphyz Launcher: forced SDL_SetMainReady() via dlsym trampoline");
+    }
+}
+
+static bool hooked_sdl_init(uint32_t flags) {
+    force_main_ready(g_sdl3_handle);
+    return g_real_sdl_init(flags);
+}
+
+static bool hooked_sdl_init_subsystem(uint32_t flags) {
+    force_main_ready(g_sdl3_handle);
+    return g_real_sdl_init_subsystem(flags);
+}
+
 void *custom_dlsym(void *handle, const char *symbol) {
     void *result = BYTEHOOK_CALL_PREV(
             custom_dlsym,
@@ -145,6 +176,23 @@ void *custom_dlsym(void *handle, const char *symbol) {
             LOGI("Morphyz Launcher: Intercepted dlsym on SDL3 JNI_OnLoad: %p", result);
             BYTEHOOK_POP_STACK();
             return get_jni_onload_wrapper(redirect);
+        }
+    }
+    if (redirect != NULL && result != NULL &&
+            strstr(redirect->library_name, "libSDL3") != NULL) {
+        if (strcmp(symbol, "SDL_Init") == 0) {
+            g_sdl3_handle = handle;
+            g_real_sdl_init = (sdl_init_func_t) result;
+            LOGI("Morphyz Launcher: Intercepted dlsym on SDL3 SDL_Init: %p", result);
+            BYTEHOOK_POP_STACK();
+            return (void *) hooked_sdl_init;
+        }
+        if (strcmp(symbol, "SDL_InitSubSystem") == 0) {
+            g_sdl3_handle = handle;
+            g_real_sdl_init_subsystem = (sdl_init_func_t) result;
+            LOGI("Morphyz Launcher: Intercepted dlsym on SDL3 SDL_InitSubSystem: %p", result);
+            BYTEHOOK_POP_STACK();
+            return (void *) hooked_sdl_init_subsystem;
         }
     }
     BYTEHOOK_POP_STACK();

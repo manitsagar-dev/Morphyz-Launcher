@@ -528,6 +528,12 @@ public class JREUtils {
         // Force LWJGL to use the Freetype library intended for it, instead of using the one
         // that we ship with Java (since it may be older than what's needed)
         userArgs.add("-Dorg.lwjgl.freetype.libname="+ Tools.lwjglNativesDir +"/libfreetype.so");
+        // Bind LWJGL's SDL bindings to the exact libSDL3.so packaged in the APK (the same
+        // instance MinecraftGLSurface.setupJNI initializes). Without an absolute path LWJGL
+        // searches org.lwjgl.librarypath/system paths first and may open a different copy,
+        // whose "main ready" flag is never set -> MC 26.x dies with
+        // "Unable to initialize SDL: Application didn't initialize properly".
+        userArgs.add("-Dorg.lwjgl.sdl.libname=" + new File(NATIVE_LIB_DIR, "libSDL3.so").getAbsolutePath());
         // Our spirv-cross is compiled shared, so it gets named shared.
         userArgs.add("-Dorg.lwjgl.spvc.libname=spirv-cross-c-shared");
 

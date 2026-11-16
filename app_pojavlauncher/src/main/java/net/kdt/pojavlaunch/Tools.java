@@ -1310,6 +1310,13 @@ public final class Tools {
                 }
             }
 
+            // Never put Minecraft's own LWJGL jars on the classpath: we ship a matching
+            // java+natives pair ourselves. Stale copies left by older installs both trip
+            // LWJGL's hash check ("Incompatible Java and native library versions") and can
+            // inject a second libSDL3.so (Mojang natives jar) whose main-ready flag was
+            // never set, which crashes MC 26.x with "Unable to initialize SDL".
+            if (libItem.name.startsWith("org.lwjgl")) continue;
+
             String libPath = Tools.DIR_HOME_LIBRARY + "/" + artifactToPath(libItem);
             if (!FileUtils.exists(libPath)) {
                 Log.d(APP_NAME, "Ignored non-exists file: " + libPath);
