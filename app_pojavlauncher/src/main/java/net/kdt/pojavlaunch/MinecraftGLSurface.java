@@ -136,6 +136,21 @@ public class MinecraftGLSurface extends View implements GrabListener, DirectGame
         org.libsdl.app.SDL.initialize();
         SDL.setContext((MainActivity) ctx);
         SDLActivity.externalInitialize(surface, layout, nativeSurface);
+        // MC 26.x loads libSDL3.so through LWJGL's SDL bindings (raw dlopen), which never
+        // runs the JVM's JNI_OnLoad. Register SDL's Java natives and flip SDL's main-ready
+        // flag ourselves, early enough that the game's SDL_Init can't race ahead of us.
+        // (The SDL_InitSubSystem bytehook remains as a fallback via CallbackBridge.)
+        try {
+            System.loadLibrary("SDL3");
+        } catch (UnsatisfiedLinkError error) {
+            Log.w("MinecraftGLSurface", "libSDL3.so is not packaged in this build", error);
+        }
+        try {
+            org.libsdl.app.SDL.setupJNI();
+            Log.i("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL pre-setup complete");
+        } catch (Throwable t) {
+            Log.w("MinecraftGLSurface", "MORPHYZ LAUNCHER: SDL pre-setup failed (will retry from SDL_Init hook)", t);
+        }
     }
 
     /** Initialize the view and all its settings
