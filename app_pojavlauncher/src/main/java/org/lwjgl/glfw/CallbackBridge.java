@@ -206,7 +206,12 @@ public class CallbackBridge {
                     // broken logic somewhere.
                     try { System.loadLibrary("SDL3"); } catch (UnsatisfiedLinkError ignored) {}
                     try { System.loadLibrary("SDL2"); } catch (UnsatisfiedLinkError ignored) {}
-                    org.libsdl.app.SDL.setupJNI();
+                    try {
+                        org.libsdl.app.SDL.setupJNI();
+                    } catch (Throwable t) {
+                        Logger.appendToLog("MORPHYZ LAUNCHER: SDL setupJNI failed: " + t);
+                        return false;
+                    }
                     onDirectInputEnable();
                     MinecraftGLSurface.sdlEnabled = true;
                     if (SDLActivity.getSDLSurface() != null) {

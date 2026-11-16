@@ -41,6 +41,9 @@ static void create_hooks(bytehook_hook_all_t bytehook_hook_all_p) {
     if(android_get_device_api_level() < 29) {
         create_chmod_hooks(bytehook_hook_all_p);
     }
+    // Install the dlsym interposition first: MC 26.x loads libSDL3.so through
+    // LWJGL's own dlopen, so SDL's JNI_OnLoad only runs if we route it.
+    create_dlopen_hooks(bytehook_hook_all_p);
     create_sdl_hooks(bytehook_hook_all_p);
 }
 
