@@ -3,6 +3,7 @@ package net.kdt.pojavlaunch.progresskeeper;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ProgressKeeper {
     private static final HashMap<String, List<ProgressListener>> sProgressListeners = new HashMap<>();
@@ -80,21 +81,53 @@ public class ProgressKeeper {
      * @param runnable the runnable to run when no tasks are remaining
      */
     public static void waitUntilDone(final Runnable runnable) {
+        waitUntilDone(runnable, 0L);
+    }
+
+    /**
+     * Wait for all progress tasks to finish, then run the callback.
+     * If {@code timeoutMs} &gt; 0 and tasks are still pending after that long,
+     * the callback is forced and the stuck progress keys are logged instead of
+     * waiting forever (a leaked progress entry would otherwise deadlock every
+     * future launch, since task-count listeners only fire on transitions to 0).
+     */
+    public static void waitUntilDone(final Runnable runnable, final long timeoutMs) {
         // If we do it the other way the listener would be removed before it was added, which will cause a listener object leak
         if(getTaskCount() == 0) {
             runnable.run();
             return;
         }
+        final AtomicBoolean done = new AtomicBoolean(false);
         TaskCountListener listener = new TaskCountListener() {
             @Override
             public void onUpdateTaskCount(int taskCount) {
-                if(taskCount == 0) {
+                if(taskCount != 0) return;
+                if(done.compareAndSet(false, true)) {
                     runnable.run();
-                    removeTaskCountListener(this);
                 }
+                removeTaskCountListener(this);
             }
         };
         addTaskCountListener(listener);
+
+        if (timeoutMs > 0) {
+            Thread timeoutThread = new Thread(() -> {
+                try {
+                    Thread.sleep(timeoutMs);
+                } catch (InterruptedException ignored) {
+                    return;
+                }
+                if (done.compareAndSet(false, true)) {
+                    android.util.Log.w("ProgressKeeper",
+                            "waitUntilDone timed out after " + timeoutMs
+                                    + "ms; still-pending progress keys: "
+                                    + sProgressStates.keySet());
+                    runnable.run();
+                }
+            }, "ProgressKeeper-waitUntilDone");
+            timeoutThread.setDaemon(true);
+            timeoutThread.start();
+        }
     }
 
     public static synchronized int getTaskCount() {

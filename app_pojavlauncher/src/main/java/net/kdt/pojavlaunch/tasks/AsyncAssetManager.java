@@ -58,6 +58,11 @@ public class AsyncAssetManager {
                 MultiRTUtils.postPrepare("Internal");
             }catch (IOException e) {
                 Log.e("JREAuto", "Internal JRE unpack failed", e);
+            } finally {
+                // Always release the global progress state: a leaked UNPACK_RUNTIME
+                // entry blocks ProgressKeeper.waitUntilDone forever and silently
+                // aborts every subsequent launch.
+                ProgressLayout.clearProgress(ProgressLayout.UNPACK_RUNTIME);
             }
         });
     }
@@ -75,8 +80,9 @@ public class AsyncAssetManager {
                 Tools.copyAssetFile(ctx,"resolv.conf",Tools.DIR_DATA, false);
             } catch (IOException e) {
                 Log.e("AsyncAssetManager", "Failed to unpack critical components !");
+            } finally {
+                ProgressLayout.clearProgress(ProgressLayout.EXTRACT_SINGLE_FILES);
             }
-            ProgressLayout.clearProgress(ProgressLayout.EXTRACT_SINGLE_FILES);
         });
     }
 

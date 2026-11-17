@@ -14,6 +14,7 @@
 #include <dlfcn.h>
 #include <jni.h>
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -162,6 +163,65 @@ static bool hooked_sdl_init_subsystem(uint32_t flags) {
     return g_real_sdl_init_subsystem(flags);
 }
 
+// MC 26.x GlBackend.loadLibrary() does:
+//   SDL_GL_LoadLibrary(<LWJGL's GL lib>);
+//   if (SDL_GL_GetProcAddress("glGetError") != LWJGL's glGetError)
+//       throw new BackendCreationException("glGetError mismatch");
+// On Android SDL resolves the symbol through eglGetProcAddress(), which returns
+// the *vendor driver's* pointer, while LWJGL binds the launcher's renderer
+// (gl4es/MobileGlues/...). The pointers differ -> OpenGL backend creation fails
+// -> MC falls back to Vulkan -> Adreno 710 lacks Vulkan 1.2 -> exit code 6.
+// Fix: answer SDL_GL_GetProcAddress from the SAME library LWJGL binds
+// (MORPHYZ_GL_LIB, exported by JREUtils), falling back to the real function.
+typedef void *(*SDL_GL_GetProcAddress_Func)(const char *);
+static SDL_GL_GetProcAddress_Func g_real_gl_getprocaddress = NULL;
+static void *g_renderer_gl_handle = NULL;
+static bool g_renderer_gl_resolved = false;
+
+static void *get_renderer_gl_handle(void) {
+    if (g_renderer_gl_resolved) {
+        return g_renderer_gl_handle;
+    }
+    g_renderer_gl_resolved = true;
+
+    const char *libName = getenv("MORPHYZ_GL_LIB");
+    if (libName == NULL || libName[0] == '\0') {
+        LOGI("Morphyz Launcher: MORPHYZ_GL_LIB not set, SDL_GL_GetProcAddress fix inactive");
+        return NULL;
+    }
+    // The renderer was already dlopen()'d by the launcher (loadGraphicsLibrary),
+    // so RTLD_NOLOAD just looks up the existing handle.
+    void *handle = dlopen(libName, RTLD_NOLOAD | RTLD_LAZY);
+    if (handle == NULL) {
+        const char *nativeDir = getenv("POJAV_NATIVEDIR");
+        if (nativeDir != NULL) {
+            char path[512];
+            snprintf(path, sizeof(path), "%s/%s", nativeDir, libName);
+            handle = dlopen(path, RTLD_NOLOAD | RTLD_LAZY);
+        }
+    }
+    if (handle == NULL) {
+        LOGI("Morphyz Launcher: renderer lib %s not found for SDL_GL_GetProcAddress fix", libName);
+    } else {
+        g_renderer_gl_handle = handle;
+        LOGI("Morphyz Launcher: SDL_GL_GetProcAddress will answer from %s (%p)", libName, handle);
+    }
+    return g_renderer_gl_handle;
+}
+
+static void *hooked_sdl_gl_getprocaddress(const char *name) {
+    if (name != NULL) {
+        void *renderer = get_renderer_gl_handle();
+        if (renderer != NULL) {
+            void *proc = dlsym(renderer, name);
+            if (proc != NULL) {
+                return proc;
+            }
+        }
+    }
+    return g_real_gl_getprocaddress != NULL ? g_real_gl_getprocaddress(name) : NULL;
+}
+
 void *custom_dlsym(void *handle, const char *symbol) {
     void *result = BYTEHOOK_CALL_PREV(
             custom_dlsym,
@@ -169,6 +229,14 @@ void *custom_dlsym(void *handle, const char *symbol) {
             handle,
             symbol);
     LibraryRedirect *redirect = get_redirect_by_handle(handle);
+    if (redirect != NULL && result != NULL &&
+            strstr(redirect->library_name, "libSDL3") != NULL &&
+            strcmp(symbol, "SDL_GL_GetProcAddress") == 0) {
+        g_real_gl_getprocaddress = (SDL_GL_GetProcAddress_Func) result;
+        LOGI("Morphyz Launcher: Intercepted dlsym on SDL3 SDL_GL_GetProcAddress: %p", result);
+        BYTEHOOK_POP_STACK();
+        return (void *) hooked_sdl_gl_getprocaddress;
+    }
     if ((redirect != NULL) && strcmp(symbol, "JNI_OnLoad") == 0) {
         if (strstr(redirect->library_name, "libSDL3")) {
             redirect->jni_onload = (JNI_OnLoad_t) result;

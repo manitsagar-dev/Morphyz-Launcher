@@ -89,13 +89,18 @@ public class MultiRTUtils {
     }
 
     public static void installRuntimeNamed(String nativeLibDir, InputStream runtimeInputStream, String name) throws IOException {
-        File dest = new File(RUNTIME_FOLDER,"/"+name);
-        if(dest.exists()) FileUtils.deleteDirectory(dest);
-        uncompressTarXZ(runtimeInputStream,dest);
-        runtimeInputStream.close();
-        unpack200(nativeLibDir,RUNTIME_FOLDER + "/" + name);
-        ProgressLayout.clearProgress(ProgressLayout.UNPACK_RUNTIME);
-        read(name);
+        try {
+            File dest = new File(RUNTIME_FOLDER,"/"+name);
+            if(dest.exists()) FileUtils.deleteDirectory(dest);
+            uncompressTarXZ(runtimeInputStream,dest);
+            runtimeInputStream.close();
+            unpack200(nativeLibDir,RUNTIME_FOLDER + "/" + name);
+            read(name);
+        } finally {
+            // Release the progress state even on failure: a leaked UNPACK_RUNTIME
+            // entry deadlocks ProgressKeeper.waitUntilDone on later launches.
+            ProgressLayout.clearProgress(ProgressLayout.UNPACK_RUNTIME);
+        }
     }
 
     public static void postPrepare(String name) throws IOException {
@@ -115,21 +120,25 @@ public class MultiRTUtils {
     }
 
     public static void installRuntimeNamedBinpack(InputStream universalFileInputStream, InputStream platformBinsInputStream, String name, String binpackVersion) throws IOException {
-        File dest = new File(RUNTIME_FOLDER,"/"+name);
-        if(dest.exists()) FileUtils.deleteDirectory(dest);
-        installRuntimeNamedNoRemove(universalFileInputStream,dest);
-        installRuntimeNamedNoRemove(platformBinsInputStream,dest);
+        try {
+            File dest = new File(RUNTIME_FOLDER,"/"+name);
+            if(dest.exists()) FileUtils.deleteDirectory(dest);
+            installRuntimeNamedNoRemove(universalFileInputStream,dest);
+            installRuntimeNamedNoRemove(platformBinsInputStream,dest);
 
-        unpack200(NATIVE_LIB_DIR,RUNTIME_FOLDER + "/" + name);
+            unpack200(NATIVE_LIB_DIR,RUNTIME_FOLDER + "/" + name);
 
-        File binpack_verfile = new File(RUNTIME_FOLDER,"/"+name+"/pojav_version");
-        FileOutputStream fos = new FileOutputStream(binpack_verfile);
-        fos.write(binpackVersion.getBytes());
-        fos.close();
+            File binpack_verfile = new File(RUNTIME_FOLDER,"/"+name+"/pojav_version");
+            FileOutputStream fos = new FileOutputStream(binpack_verfile);
+            fos.write(binpackVersion.getBytes());
+            fos.close();
 
-        ProgressLayout.clearProgress(ProgressLayout.UNPACK_RUNTIME);
-
-        forceReread(name);
+            forceReread(name);
+        } finally {
+            // Release the progress state even on failure: a leaked UNPACK_RUNTIME
+            // entry deadlocks ProgressKeeper.waitUntilDone on later launches.
+            ProgressLayout.clearProgress(ProgressLayout.UNPACK_RUNTIME);
+        }
     }
 
 
