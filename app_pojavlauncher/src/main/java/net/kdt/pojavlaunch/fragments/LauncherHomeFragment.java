@@ -324,29 +324,23 @@ public class LauncherHomeFragment extends Fragment {
         mRenderer = new SkinGLRenderer(requireContext());
         mRenderer.mAngleX = PLAYER_BASE_YAW;   // front + char-left three-quarter
         mRenderer.mAngleY = 5f;
-        // Bigger, centred figure. Zoom is as large as possible while still
-        // keeping the WHOLE body — raised (left) hand up beside the head and
-        // both legs/feet — inside the surface. (Home framing only; Skin
-        // Management is separate.) The GL surface fills the middle band and is
-        // horizontally centred over the LAUNCH capsule.
-        // Framing tuned so the WHOLE figure fits inside the band whose top is
-        // the name tag: the head + raised hand keep clear top headroom (no
-        // clip at the surface's top edge) and the feet stay above the launch
-        // row. The band's top is now the account chip (tall), so the head, the
-        // raised hand AND the in-scene name tag above the head all have clear
-        // headroom and none of them touches the surface's top edge = no clip
-        // line. Skin size is unchanged (kept large per user request).
-        // Slightly bigger figure than last build (0.92 -> 0.96). A NEGATIVE
-        // vertical shift pushes the whole figure DOWN in the frame, keeping the
-        // head + raised (left) hand clear of the ortho frustum's top edge so
-        // NOTHING clips (empirically -1.4 was clean; -1.5 keeps that margin at
-        // the larger zoom), while the feet stay above the launch row.
-        mRenderer.mZoomFactor = 1.06f;
+        // Figure centred INSIDE the RIGHT-side band (lh_player is constrained
+        // to lh_center_guide..end, per user request: character lives in the
+        // previously empty right-side space). Size slightly smaller per user
+        // request (1.06 -> 0.90). (Home framing only; Skin Management is
+        // separate.) The ortho frustum is height-fixed (±18 world units) and
+        // only its width follows the surface aspect, so the narrower band
+        // keeps the vertical framing: the whole body — raised (left) hand and
+        // both feet — still fits with top headroom (head + hand clear of the
+        // surface's top edge) and the feet stay above the launch row.
+        // A NEGATIVE vertical shift pushes the whole figure DOWN in the frame
+        // so the head + raised hand never touch the ortho frustum's top edge.
+        mRenderer.mZoomFactor = 0.90f;
         mRenderer.mVerticalShift = -1.9f;
         // The 3/4-view yaw + raised left hand push the visible body mass toward
-        // screen-right, so the figure reads as offset from the LAUNCH button
-        // axis. Nudge the whole scene left so the head/torso sit dead-centre
-        // over the button. (Home framing only; Skin Management is untouched.)
+        // screen-right. Nudge the whole scene left so the head/torso sit
+        // dead-centre inside the right-side band. (Home framing only; Skin
+        // Management is untouched.)
         mRenderer.mHorizontalShift = -2.8f;
         mRenderer.mAutoRotate = false;
         // Home draws its name tag in the UI layer (lh_hero_name TextView) above
@@ -392,7 +386,7 @@ public class LauncherHomeFragment extends Fragment {
         // Tapping the character opens Skin Management — restricted to actual character bounds.
         mPlayer.setClickable(true);
         final float density = getResources().getDisplayMetrics().density;
-        final float characterHalfWidth = 85f * density;
+        final float characterHalfWidth = 76f * density;
         mPlayer.setOnTouchListener(new android.view.View.OnTouchListener() {
             private float downX, downY;
             private boolean downOnCharacter;
