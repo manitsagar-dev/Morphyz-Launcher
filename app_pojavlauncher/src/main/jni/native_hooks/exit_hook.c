@@ -10,7 +10,9 @@
 #include <stdlib.h>
 #include "stdio_is.h"
 
-#define TAG __FILE_NAME__
+// Use the default "jrelog" tag (not __FILE_NAME__) so bytehook init failures
+// are captured by the launcher's logcat reader and show up in latestlog.txt -
+// they were invisible before and left no trace when the dlsym hooks failed.
 #include <log.h>
 
 static _Atomic bool exit_tripped = false;

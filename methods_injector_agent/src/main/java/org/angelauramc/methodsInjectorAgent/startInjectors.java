@@ -3,6 +3,7 @@ package org.angelauramc.methodsInjectorAgent;
 import org.angelauramc.methodsInjectorAgent.lwjgl2_methods_injector.ALC10Injector;
 import org.angelauramc.methodsInjectorAgent.lwjgl2_methods_injector.ASM5OverrideInjector;
 import org.angelauramc.methodsInjectorAgent.mods_compatibility_injector.VeilImguiOverrideDisable;
+import org.angelauramc.methodsInjectorAgent.renderpearl_gl.GlBackendLoadLibraryInjector;
 
 import java.lang.instrument.Instrumentation;
 
@@ -21,6 +22,9 @@ public class startInjectors {
             System.out.println("Copper-Android: Detected ASM version: " + implVersion);
             ALC10Injector.premain(args, inst);
             VeilImguiOverrideDisable.premain(args, inst);
+            // MC 26.x: SDL vs LWJGL glGetError pointer mismatch always fails on
+            // Android and dead-ends in the (unsupported) Vulkan fallback.
+            GlBackendLoadLibraryInjector.premain(args, inst);
             // This is the version we override old asm vers with. So we add the patches
             // so the older version bugs are ported.
             if (implVersion.equals("5.0.4")) ASM5OverrideInjector.premain(args, inst);
