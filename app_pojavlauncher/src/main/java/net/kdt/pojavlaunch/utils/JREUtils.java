@@ -329,6 +329,14 @@ public class JREUtils {
             envMap.put("POJAV_LOAD_TURNIP", "1");
         }
 
+        // Let the native SDL hooks (dlopen_hook.c) resolve SDL_GL_GetProcAddress
+        // from the same renderer library LWJGL binds. Fixes the MC 26.x
+        // "BackendCreationException: glGetError mismatch" -> Vulkan fallback ->
+        // exit code 6 on devices whose system Vulkan is too old.
+        if (sGraphicsLibName != null) {
+            envMap.put("MORPHYZ_GL_LIB", sGraphicsLibName);
+        }
+
         readCustomEnv(envMap); // Must be last so it overrides anything the user sets for obvious reasons.
 
         for (Map.Entry<String, String> env : envMap.entrySet()) {
@@ -747,6 +755,11 @@ public class JREUtils {
         return parsedArguments;
     }
 
+    /** The renderer library actually resolved/loaded for this launch (e.g.
+     * "libgl4es_115.so"). Exported to the game process as MORPHYZ_GL_LIB so the
+     * native SDL hooks can answer SDL_GL_GetProcAddress from the same library. */
+    public static String sGraphicsLibName = null;
+
     /**
      * Open the render library in accordance to the settings.
      * It will fallback if it fails to load the library.
@@ -789,6 +802,7 @@ public class JREUtils {
                 dlopen(findInLdLibPath(renderLibrary));
             }
         }
+        sGraphicsLibName = renderLibrary;
         return renderLibrary;
     }
 

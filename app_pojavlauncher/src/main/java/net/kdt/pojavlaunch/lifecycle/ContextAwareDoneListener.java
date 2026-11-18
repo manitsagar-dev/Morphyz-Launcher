@@ -47,11 +47,14 @@ public class ContextAwareDoneListener implements AsyncMinecraftDownloader.DoneLi
 
     @Override
     public void onDownloadDone() {
+        // Timeout: a leaked progress entry (see ProgressKeeper.waitUntilDone) would
+        // otherwise block here forever — the "progress bar reaches 86% then nothing
+        // happens" silent-launch failure.
         ProgressKeeper.waitUntilDone(() -> {
             // Verification + any required downloads all cleared — STARTING beat.
             net.kdt.pojavlaunch.launch.LaunchTracker.starting();
             ContextExecutor.execute(this);
-        });
+        }, 30_000L);
     }
 
     @Override
