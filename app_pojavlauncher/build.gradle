@@ -237,7 +237,10 @@ dependencies {
     // Our version of exp4j can be built from source at
     // https://github.com/PojavLauncherTeam/exp4j
     implementation 'net.sourceforge.htmlcleaner:htmlcleaner:2.6.1'
-    implementation 'com.bytedance:bytehook:1.0.9'
+    // 1.0.9 (2023) fails bytehook_init with internal error (status 3) on
+    // Android 16 / API 36 devices, silently killing every PLT hook (exit code
+    // capture, dlsym trampolines). 1.1.2 is the current upstream release.
+    implementation 'com.bytedance:bytehook:1.1.2'
     // Animated GIF support for profile backgrounds (native decoder, memory-efficient)
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.28'
     implementation 'com.caverock:androidsvg-aar:1.4'
