@@ -7,8 +7,9 @@
 
        • left dock (edge-aligned, vertically centered)
        • account chip (top-right)
-       • 3D player (left half of the central band, never overlapped)
-       • launch cluster (right half): eyebrow → instance → meta → PLAY →
+       • 3D player (RIGHT band, from lh_center_guide to the edge — sits in
+         the previously empty right-side space, never overlapped)
+       • launch cluster (bottom-centred): eyebrow → instance → meta → PLAY →
          CONTINUE pill — all in one visual column, no floating strays
        • library carousel (bottom, clear of the dock)
 
@@ -311,7 +312,7 @@
             android:shadowColor="#B3000000"
             android:shadowDy="1"
             android:shadowRadius="6"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/lh_center_guide"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lh_account_chip" />
 
@@ -328,7 +329,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="2dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@id/lh_center_guide"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lh_hero_name"
             app:layout_constraintBottom_toTopOf="@id/lh_launch_row" />
