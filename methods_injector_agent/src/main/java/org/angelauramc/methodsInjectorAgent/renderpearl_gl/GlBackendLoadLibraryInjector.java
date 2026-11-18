@@ -84,9 +84,12 @@ public class GlBackendLoadLibraryInjector {
         @Override
         public MethodVisitor visitMethod(int access, final String name, final String desc,
                                          String signature, String[] exceptions) {
-            MethodVisitor mv = super.visitMethod(access, name, desc, signature, exceptions);
+            // NOTE: named "delegate", not "mv" - the anonymous MethodVisitor below
+            // inherits a protected field called mv (null here), which would shadow
+            // a local named mv and NPE on first use.
+            MethodVisitor delegate = super.visitMethod(access, name, desc, signature, exceptions);
             if (!TARGET_METHOD.equals(name)) {
-                return mv;
+                return delegate;
             }
             patched = true;
             // Discard the original method body entirely (a MethodVisitor with a null
@@ -95,38 +98,43 @@ public class GlBackendLoadLibraryInjector {
             return new MethodVisitor(Opcodes.ASM9) {
                 @Override
                 public void visitCode() {
-                    mv.visitCode();
+                    delegate.visitCode();
                     char returnType = desc.charAt(desc.indexOf(')') + 1);
                     switch (returnType) {
                         case 'V':
-                            mv.visitInsn(Opcodes.RETURN);
+                            delegate.visitInsn(Opcodes.RETURN);
                             break;
                         case 'J':
-                            mv.visitInsn(Opcodes.LCONST_0);
-                            mv.visitInsn(Opcodes.LRETURN);
+                            delegate.visitInsn(Opcodes.LCONST_0);
+                            delegate.visitInsn(Opcodes.LRETURN);
                             break;
                         case 'D':
-                            mv.visitInsn(Opcodes.DCONST_0);
-                            mv.visitInsn(Opcodes.DRETURN);
+                            delegate.visitInsn(Opcodes.DCONST_0);
+                            delegate.visitInsn(Opcodes.DRETURN);
                             break;
                         case 'F':
-                            mv.visitInsn(Opcodes.FCONST_0);
-                            mv.visitInsn(Opcodes.FRETURN);
+                            delegate.visitInsn(Opcodes.FCONST_0);
+                            delegate.visitInsn(Opcodes.FRETURN);
+                            break;
+                        case 'Z':
+                            // boolean: report success so an unchecked "did it load?"
+                            // style result can never route MC into the Vulkan fallback
+                            delegate.visitInsn(Opcodes.ICONST_1);
+                            delegate.visitInsn(Opcodes.IRETURN);
                             break;
                         case 'I':
-                        case 'Z':
                         case 'B':
                         case 'C':
                         case 'S':
-                            mv.visitInsn(Opcodes.ICONST_0);
-                            mv.visitInsn(Opcodes.IRETURN);
+                            delegate.visitInsn(Opcodes.ICONST_0);
+                            delegate.visitInsn(Opcodes.IRETURN);
                             break;
                         default: // object or array return type
-                            mv.visitInsn(Opcodes.ACONST_NULL);
-                            mv.visitInsn(Opcodes.ARETURN);
+                            delegate.visitInsn(Opcodes.ACONST_NULL);
+                            delegate.visitInsn(Opcodes.ARETURN);
                     }
-                    mv.visitMaxs(2, 0); // recomputed by ClassWriter.COMPUTE_MAXS
-                    mv.visitEnd();
+                    delegate.visitMaxs(2, 0); // recomputed by ClassWriter.COMPUTE_MAXS
+                    delegate.visitEnd();
                 }
             };
         }
