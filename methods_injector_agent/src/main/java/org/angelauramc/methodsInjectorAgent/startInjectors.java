@@ -1,5 +1,6 @@
 package org.angelauramc.methodsInjectorAgent;
 
+import org.angelauramc.methodsInjectorAgent.crash_report.CrashReportThrowableInjector;
 import org.angelauramc.methodsInjectorAgent.lwjgl2_methods_injector.ALC10Injector;
 import org.angelauramc.methodsInjectorAgent.lwjgl2_methods_injector.ASM5OverrideInjector;
 import org.angelauramc.methodsInjectorAgent.mods_compatibility_injector.VeilImguiOverrideDisable;
@@ -25,6 +26,9 @@ public class startInjectors {
             // MC 26.x: SDL vs LWJGL glGetError pointer mismatch always fails on
             // Android and dead-ends in the (unsupported) Vulkan fallback.
             GlBackendLoadLibraryInjector.premain(args, inst);
+            // Surface the primary exception of every crash report in the launch
+            // log; the crash-reports/ file alone is hard to reach after a crash.
+            CrashReportThrowableInjector.premain(args, inst);
             // This is the version we override old asm vers with. So we add the patches
             // so the older version bugs are ported.
             if (implVersion.equals("5.0.4")) ASM5OverrideInjector.premain(args, inst);

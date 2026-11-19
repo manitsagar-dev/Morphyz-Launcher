@@ -103,8 +103,31 @@ public class ProfileLogActivity extends AppCompatActivity {
             int lines = 0;
             boolean truncated = false;
             StringBuilder out = new StringBuilder();
+            // Previous run first: preserved by ProfileLogStore.preservePreviousSession()
+            // on the app start that truncated latestlog.txt, so a session that died
+            // without a clean exit (SIGKILL/LMK, native SIGSEGV) stays visible here.
+            if (mLogFile != null && mLogFile.getParentFile() != null) {
+                File preserved = new File(mLogFile.getParentFile(), Tools.LAST_CRASH_LOG_NAME);
+                if (preserved.isFile() && preserved.length() > 0) {
+                    out.append("===== PRESERVED PREVIOUS SESSION · ")
+                            .append(DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT)
+                                    .format(new Date(preserved.lastModified())))
+                            .append(" =====\n");
+                    try (BufferedReader reader = new BufferedReader(new FileReader(preserved))) {
+                        String line;
+                        while ((line = reader.readLine()) != null) {
+                            if (lines >= MAX_LINES || out.length() + line.length() + 1 > MAX_CHARS) {
+                                truncated = true; break;
+                            }
+                            out.append(line).append('\n'); lines++;
+                        }
+                    } catch (Exception ignored) {}
+                    if (!truncated) out.append("===== CURRENT SESSION =====\n");
+                }
+            }
             if (mLogFile == null || !mLogFile.isFile()) {
-                content = "No launch log is available for this profile yet.";
+                content = out.length() > 0 ? out.toString()
+                        : "No launch log is available for this profile yet.";
             } else {
                 try (BufferedReader reader = new BufferedReader(new FileReader(mLogFile))) {
                     String line;
@@ -117,7 +140,8 @@ public class ProfileLogActivity extends AppCompatActivity {
                     if (truncated) out.append("\n[MORPHYZ LAUNCHER] Display truncated at the mclo.gs safety limit.\n");
                     content = out.toString();
                 } catch (Exception e) {
-                    content = "Unable to read this profile log:\n" + e.getMessage();
+                    content = (out.length() > 0 ? out.toString() + "\n" : "")
+                            + "Unable to read this profile log:\n" + e.getMessage();
                 }
             }
             final String loaded = content;
@@ -167,6 +191,18 @@ public class ProfileLogActivity extends AppCompatActivity {
     }
 
     private void shareFile() {
+        // Share the combined on-screen content (preserved previous session + current);
+        // the raw latestlog.txt alone misses the preserved session after a crash.
+        if (!TextUtils.isEmpty(mContent)) {
+            if (mContent.length() <= 350_000) {
+                shareText(mContent, "Share log");
+            } else {
+                Toast.makeText(this,
+                        "Log too large to share as text - use COPY or the MCLO.GS upload",
+                        Toast.LENGTH_LONG).show();
+            }
+            return;
+        }
         if (mLogFile == null || !mLogFile.isFile()) {
             Toast.makeText(this, "No log to share", Toast.LENGTH_SHORT).show(); return;
         }
