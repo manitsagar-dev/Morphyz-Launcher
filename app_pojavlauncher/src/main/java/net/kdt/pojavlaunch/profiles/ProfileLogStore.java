@@ -10,6 +10,8 @@ import net.kdt.pojavlaunch.prefs.LauncherPreferences;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -56,6 +58,31 @@ public final class ProfileLogStore {
             throw new IOException("Unable to create profile log");
         }
         return file;
+    }
+
+    /**
+     * Copies the current latestlog.txt to a sibling {@code last_crash.log} right before
+     * the native Logger.begin() truncates it. Without this, a session that died without
+     * a clean exit (SIGKILL / LMK, native SIGSEGV) was unrecoverable: the next app start
+     * wiped the only copy and the log screen came back empty. Empty files (a launcher-only
+     * session that never reached the game) are skipped so they can never overwrite a
+     * previously preserved session.
+     */
+    public static void preservePreviousSession(@NonNull File latest) {
+        try {
+            if (!latest.isFile() || latest.length() == 0) return;
+            File parent = latest.getParentFile();
+            if (parent == null) return;
+            File preserved = new File(parent, Tools.LAST_CRASH_LOG_NAME);
+            try (FileInputStream in = new FileInputStream(latest);
+                 FileOutputStream out = new FileOutputStream(preserved, false)) {
+                byte[] buf = new byte[8192];
+                int n;
+                while ((n = in.read(buf)) > 0) out.write(buf, 0, n);
+            }
+        } catch (IOException ignored) {
+            // Best effort: never block the launch because preservation failed.
+        }
     }
 
     public static long countLines(@NonNull File file) {

@@ -255,6 +255,10 @@ public class MainActivity extends BaseActivity implements ControlButtonMenuListe
             // touching logs belonging to any other instance.
             File latestLogFile = net.kdt.pojavlaunch.profiles.ProfileLogStore
                     .prepareForCurrentProfile(this);
+            // Keep the previous (possibly crashed) session before the native
+            // Logger.begin() truncates it - silent deaths (SIGKILL/LMK, native
+            // SIGSEGV) left no other copy of the log.
+            net.kdt.pojavlaunch.profiles.ProfileLogStore.preservePreviousSession(latestLogFile);
             Logger.begin(latestLogFile.getAbsolutePath());
             // FIXME: is it safe for multi thread?
             GLOBAL_CLIPBOARD = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
